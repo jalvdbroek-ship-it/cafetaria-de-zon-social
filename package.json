@@ -1,0 +1,14 @@
+{
+  "name": "cafetaria-de-zon-social",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "render": "node tools/render.mjs",
+    "video": "node tools/video.mjs",
+    "docs": "node tools/docs.mjs --pdf"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
+  }
+}
