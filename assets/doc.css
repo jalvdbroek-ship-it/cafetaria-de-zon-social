@@ -3,7 +3,7 @@ body.doc { height: auto; overflow: auto; background: var(--paper); color: var(--
 .doc .wrap { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
 .doc section { padding: 72px 0; border-top: 3px solid var(--ink); }
 .doc .cover { background: var(--sun); border-top: 0; padding: 96px 0 80px; }
-.doc .cover h1 { font-size: clamp(64px, 11vw, 150px); line-height: 0.9; letter-spacing: -0.045em; font-weight: 800; }
+.doc .cover h1 { font-size: clamp(40px, 11vw, 150px); overflow-wrap: break-word; line-height: 0.9; letter-spacing: -0.045em; font-weight: 800; }
 .doc .cover p { font-size: 28px; font-weight: 600; margin-top: 28px; max-width: 30em; }
 .doc h2 { font-size: clamp(36px, 5vw, 64px); line-height: 1; letter-spacing: -0.035em; font-weight: 800; margin-bottom: 28px; }
 .doc h3 { font-size: 26px; letter-spacing: -0.02em; font-weight: 800; margin: 28px 0 10px; }
@@ -33,7 +33,9 @@ body.doc { height: auto; overflow: auto; background: var(--paper); color: var(--
 .doc .sw .chipc { height: 90px; }
 .doc .sw .meta { padding: 10px 12px; font-size: 14px; font-weight: 600; background: var(--paper); }
 .doc .sw .meta b { display: block; font-size: 17px; }
-.doc .scroll-x { overflow-x: auto; }
+.doc .scroll-x { position: relative; overflow-x: auto; max-width: 100%; }
+.doc .scroll-x:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+.doc td .tag { white-space: normal; text-align: center; }
 .doc .stillonly { display: none; }
 .doc .illset { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 14px; }
 .doc .illset div { background: var(--paper-2); border: 2px solid var(--ink); border-radius: 14px; padding: 14px; text-align: center; font-size: 14px; font-weight: 700; }
@@ -51,6 +53,11 @@ body.doc { height: auto; overflow: auto; background: var(--paper); color: var(--
 @media (max-width: 900px) {
   .doc .c4, .doc .c5, .doc .c6, .doc .c7, .doc .c8 { grid-template-columns: repeat(2, 1fr); }
   .doc .c3 { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .doc .grid > * { min-width: 0; }
+  .doc .c4 { grid-template-columns: 1fr; }
+  .doc .chip { max-width: 100%; padding: 14px 22px; font-size: 28px; gap: 12px; }
 }
 @media print {
   .doc .nav { display: none; }

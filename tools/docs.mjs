@@ -10,7 +10,9 @@ const { default: pieces } = await import(pathToFileURL(join(sm, "src/pieces.mjs"
 const { captions, videos, opnamelijst, kalender } = await import(pathToFileURL(join(sm, "src/content.mjs")).href);
 const { char, CAST } = await import(pathToFileURL(join(sm, "src/personages.mjs")).href);
 const withPdf = process.argv.includes("--pdf");
-const w = (rel, text) => { const p = join(sm, rel); mkdirSync(dirname(p), { recursive: true }); writeFileSync(p, text); };
+// Elke tabel in een zijwaarts scrollbaar vak, zodat de pagina op een telefoon niet te breed wordt
+const scrollTables = (t) => t.replace(/<div class="scroll-x">(<table[\s\S]*?<\/table>)<\/div>/g, "$1").replace(/<table[\s\S]*?<\/table>/g, (m) => `<div class="scroll-x" role="region" tabindex="0" aria-label="Tabel, scroll zijwaarts voor meer kolommen">${m}</div>`);
+const w = (rel, text) => { const p = join(sm, rel); mkdirSync(dirname(p), { recursive: true }); writeFileSync(p, rel.endsWith(".html") ? scrollTables(text) : text); };
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const csv = (rows) => rows.map((r) => r.map((c) => `"${String(c).replaceAll('"', '""').replaceAll("\n", " ")}"`).join(";")).join("\n");
 const by = Object.fromEntries(pieces.map((p) => [p.id, p]));
@@ -56,7 +58,7 @@ const sprite = (() => {
   return `<svg class="sprite" aria-hidden="true">${ill}</svg>`;
 })();
 const fig = (id, pre, label) => `<figure><img src="${src(id, pre)}" alt="${esc(label || id)}" loading="lazy"><figcaption>${esc(label || id)}</figcaption></figure>`;
-const headHtml = (title, pre) => `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="${pre}assets/brand.css"><link rel="stylesheet" href="${pre}assets/doc.css"></head><body class="doc">${sprite}`;
+const headHtml = (title, pre) => `<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><meta name="description" content="Concept voor Cafetaria De Zon in Zwartewaal: social media-pakket met posts, carrousels, stories, video en captions. Nog niet gepubliceerd."><meta name="robots" content="noindex"><link rel="stylesheet" href="${pre}assets/brand.css"><link rel="stylesheet" href="${pre}assets/doc.css"></head><body class="doc">${sprite}`;
 
 const colors = [
   ["Zonnegeel", "--sun", "#F7B500", "Primair: vlakken, accenten", "9,1 : 1 met inkt"],
@@ -80,7 +82,7 @@ const guidelines = `${headHtml("Merkrichtlijnen social media: Cafetaria De Zon",
 <div class="grid c3"><div class="callout"><b>Wel</b><br>Korte zinnen. "Jij" en "je". Eén grap per bericht. Altijd adres of telefoon erbij waar het kan.</div><div class="callout"><b>Niet</b><br>Hype ("de allerlekkerste"), verzonnen acties, prijzen zonder bevestiging, "vers" of "ambachtelijk" zonder bewijs.</div><div class="callout"><b>Emoji</b><br>Maximaal één per bericht, bij voorkeur 🌞. Nooit als vervanging van woorden en nooit in de afbeelding.</div></div></div></section>
 <section><div class="wrap"><h2>Kleuren</h2>${swatches}<p class="small">Gebruik per afbeelding één dominante kleur (zonnegeel, crème, brandoranje of nacht). Tekst altijd inktbruin op geel of crème, crème op oranje, nachttekst op nacht. Contrastwaarden zijn gemeten met de WCAG-formule.</p></div></section>
 <section><div class="wrap"><h2>Typografie</h2>
-<p style="font-size:96px;font-weight:800;letter-spacing:-0.04em;line-height:.95">Bricolage Grotesque</p>
+<p style="font-size:clamp(44px,12vw,96px);font-weight:800;letter-spacing:-0.04em;line-height:.95">Bricolage Grotesque</p>
 <table><tr><th>Rol</th><th>Gebruik</th><th>Gewicht en maat (feed 1080 breed)</th></tr><tr><td>Kop</td><td>Eén tot vier woorden, korte zinnen</td><td>800, 100 tot 160 px, regelafstand 0,9, letterafstand -4,5%</td></tr><tr><td>Lead</td><td>Eén ondersteunende zin</td><td>600, 42 tot 48 px</td></tr><tr><td>Chip</td><td>CTA (bel, adres, reageer)</td><td>800, 46 px, rand 5 px inkt</td></tr><tr><td>Infoband</td><td>Naam en adres</td><td>700, 30 px</td></tr></table>
 <p class="small">Lettertype: SIL Open Font License 1.1. Verbind de woorden "De Zon" in een kop met een vaste spatie zodat de naam niet breekt.</p></div></section>
 <section><div class="wrap"><h2>Herbruikbare elementen</h2>
