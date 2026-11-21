@@ -2,7 +2,7 @@
 
 Alleen bevestigde feiten. Emoji: maximaal één per bericht (🌞). Hashtags: 3 tot 6.
 
-## F01: Introductie
+## F01: Introductie: de bende
 
 - **Plaatsing:** Instagram + Facebook feed
 - **Doel:** Voorstellen en herkenbaar worden in Zwartewaal
@@ -10,12 +10,11 @@ Alleen bevestigde feiten. Emoji: maximaal één per bericht (🌞). Hashtags: 3 
 - **Beeld:** Klaar (grafisch)
 
 Hoi Zwartewaal! 🌞
-Hier zijn we: Cafetaria De Zon, aan het Noordeinde 12.
+Wij zijn Cafetaria De Zon en dit is de bende: Zon, Frietje, Burg, Snack, IJsje en Slaatje.
+Kom langs aan het Noordeinde 12, dinsdag t/m zondag vanaf 12:30 uur. Pinnen of contant.
+Afhalen? Bel 0181 66 36 69.
 
-Kom langs of bel even om af te halen: 0181 66 36 69.
-Dinsdag t/m zondag open, vanaf 12:30 uur.
-
-#cafetariadezon #zwartewaal #voorneaanzee #afhalen #cafetaria
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
 
 ## F02: Frites
 
@@ -24,10 +23,10 @@ Dinsdag t/m zondag open, vanaf 12:30 uur.
 - **CTA:** Bel 0181 66 36 69
 - **Beeld:** Klaar (grafisch)
 
-Zin in frites? Wij ook. 🌞
-Bel 0181 66 36 69 en haal ze af aan het Noordeinde 12. Pinnen of contant, allebei prima.
+Zin in frites? Frietje zou het wel weten. 🌞
+Bel 0181 66 36 69 en haal ze af aan het Noordeinde 12. Pinnen of contant.
 
-#frites #friet #afhalen #zwartewaal #cafetariadezon
+#cafetariadezon #zwartewaal #voorneaanzee #frites #friet #afhalen
 
 ## F03: Hamburgers
 
@@ -36,10 +35,10 @@ Bel 0181 66 36 69 en haal ze af aan het Noordeinde 12. Pinnen of contant, allebe
 - **CTA:** Haal af aan het Noordeinde 12
 - **Beeld:** Klaar (grafisch)
 
-Burgerzin? Dan weet je ons te vinden: Noordeinde 12 in Zwartewaal.
-Bel vooruit en haal ’m af: 0181 66 36 69.
+Burgerzin? Burg staat klaar met zijn zonnebril.
+Haal 'm af aan het Noordeinde 12, dinsdag t/m zondag vanaf 12:30 uur.
 
-#hamburger #burger #afhalen #zwartewaal #cafetariadezon
+#cafetariadezon #zwartewaal #voorneaanzee #hamburger #burger #afhalen
 
 ## F04: Snacks (vraag)
 
@@ -48,9 +47,10 @@ Bel vooruit en haal ’m af: 0181 66 36 69.
 - **CTA:** Reageer met je favoriet
 - **Beeld:** Klaar (grafisch)
 
-Snacktijd! Wat is jouw favoriet? Laat het weten in de reacties, wij lezen ze allemaal. 🌞
+Snacktijd! Snack wil weten: wat is jouw favoriet?
+Zeg het in de reacties. 🌞
 
-#snacks #cafetaria #afhalen #zwartewaal #cafetariadezon
+#cafetariadezon #zwartewaal #voorneaanzee #snacks #cafetaria #afhalen
 
 ## F05: Vegetarisch
 
@@ -59,10 +59,10 @@ Snacktijd! Wat is jouw favoriet? Laat het weten in de reacties, wij lezen ze all
 - **CTA:** Vraag ernaar: 0181 66 36 69
 - **Beeld:** Klaar (grafisch)
 
-Geen vlees? Ook prima. Vegetarisch kan bij De Zon.
-Benieuwd wat er vegetarisch te halen is? Bel ons gerust: 0181 66 36 69.
+Geen vlees? Ook prima. Slaatje zegt: vegetarisch kan bij De Zon.
+Benieuwd naar de mogelijkheden? Bel 0181 66 36 69 of vraag ernaar bij het afhalen.
 
-#vegetarisch #cafetaria #zwartewaal #cafetariadezon
+#cafetariadezon #zwartewaal #voorneaanzee #vegetarisch #cafetaria
 
 ## F06: Merkpost: regen
 
@@ -72,10 +72,9 @@ Benieuwd wat er vegetarisch te halen is? Bel ons gerust: 0181 66 36 69.
 - **Beeld:** Klaar (grafisch)
 
 Het regent. Bij De Zon schijnt het altijd. 🌞
-(En anders hebben we nog frites.)
-Haal af aan het Noordeinde 12: 0181 66 36 69.
+Haal wat lekkers af aan het Noordeinde 12.
 
-#cafetariadezon #zwartewaal #voorneaanzee #afhalen
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
 
 ## F07: Achter de balie
 
@@ -84,11 +83,10 @@ Haal af aan het Noordeinde 12: 0181 66 36 69.
 - **CTA:** Kom langs
 - **Beeld:** FOTO NODIG: balie of medewerker aan het werk (met toestemming)
 
-Een kijkje achter de balie. 🌞
-Zo ziet het eruit aan het Noordeinde in Zwartewaal.
-Kom je ook een keer langs? Dinsdag t/m zondag vanaf 12:30 uur.
+Een kijkje achter de balie van De Zon. 🌞
+Kom langs aan het Noordeinde 12, dinsdag t/m zondag vanaf 12:30 uur.
 
-#cafetariadezon #zwartewaal #voorneaanzee #cafetaria
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
 
 ## F08: Kom langs
 
@@ -98,9 +96,9 @@ Kom je ook een keer langs? Dinsdag t/m zondag vanaf 12:30 uur.
 - **Beeld:** Klaar (grafisch)
 
 Kom langs! Noordeinde 12, 3238 BG Zwartewaal.
-Dinsdag t/m zondag vanaf 12:30 uur. Route plannen kan via de knop op ons profiel of de website.
+Dinsdag t/m zondag open. Pinnen of contant.
 
-#zwartewaal #voorneaanzee #brielle #vierpolders #cafetariadezon
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
 
 ## F09: Frites of snack?
 
@@ -110,9 +108,9 @@ Dinsdag t/m zondag vanaf 12:30 uur. Route plannen kan via de knop op ons profiel
 - **Beeld:** Klaar (grafisch)
 
 Frites of snack? Kies er één! 🌞
-Reageer met 1 (frites) of 2 (snack). Geen goed of fout, wel eerlijk blijven.
+Reageer met 1 (frites) of 2 (snack). Frietje en Snack houden de stand bij.
 
-#frites #snacks #cafetariadezon #zwartewaal #voorneaanzee
+#cafetariadezon #zwartewaal #voorneaanzee #frites #friet #afhalen
 
 ## F10: Afhalen
 
@@ -121,46 +119,82 @@ Reageer met 1 (frites) of 2 (snack). Geen goed of fout, wel eerlijk blijven.
 - **CTA:** Bel 0181 66 36 69
 - **Beeld:** Klaar (grafisch)
 
-Geen zin om te koken? Haal het bij De Zon.
+Geen zin om te koken? Wij wel.
 Bel 0181 66 36 69, haal af aan het Noordeinde 12 en betaal met pin of contant.
 
-#afhalen #frites #friet #afhalen #zwartewaal #cafetariadezon
+#cafetariadezon #zwartewaal #voorneaanzee #frites #friet #afhalen
 
-## C1: Carrousel: ontdek de menukaart
+## F11: Maandag: de Zon slaapt
+
+- **Plaatsing:** Instagram + Facebook feed
+- **Doel:** Duidelijk maken dat maandag gesloten is (met humor)
+- **CTA:** Kom dinsdag langs
+- **Beeld:** Klaar (grafisch)
+
+Maandag: de Zon slaapt. 😴
+Dinsdag vanaf 12:30 uur zijn we er weer, aan het Noordeinde 12.
+
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
+
+## F12: Late Zon (weekend)
+
+- **Plaatsing:** Instagram + Facebook feed
+- **Doel:** Weekendbezoek: vrijdag en zaterdag tot 23:00
+- **CTA:** Kom langs in het weekend
+- **Beeld:** Klaar (grafisch)
+
+Late Zon! Vrijdag en zaterdag zijn we open tot 23:00 uur, zondag tot 21:00 uur.
+Noordeinde 12, Zwartewaal. 🌞
+
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
+
+## F13: Pinnen of contant
+
+- **Plaatsing:** Instagram + Facebook feed
+- **Doel:** Praktische vraag wegnemen
+- **CTA:** Bel 0181 66 36 69
+- **Beeld:** Klaar (grafisch)
+
+Pinnen of contant? Allebei kan. Honger? Dat is het enige wat je nodig hebt.
+Bel 0181 66 36 69 en haal af aan het Noordeinde 12.
+
+#cafetariadezon #zwartewaal #voorneaanzee #snacks #cafetaria #afhalen
+
+## C1: Carrousel: ontmoet de bende
 
 - **Plaatsing:** Instagram carrousel (+ Facebook)
-- **Doel:** Aanbod in één oogopslag
-- **CTA:** Bel 0181 66 36 69 of kom langs voor de actuele kaart
-- **Beeld:** Klaar (grafisch, alleen categorieën)
+- **Doel:** Merkpersoonlijkheid en opslaan/delen
+- **CTA:** Kom de bende ontmoeten
+- **Beeld:** Klaar (grafisch)
 
-De kaart van De Zon in één swipe: frites, hamburgers, snacks, vegetarisch en ijs, plus dranken.
-De actuele kaart? Bel 0181 66 36 69 of kom langs aan het Noordeinde 12. 🌞
+Ontmoet de bende van De Zon! Swipe en kies je favoriet: Zon, Frietje, Burg, Snack, IJsje of Slaatje.
+Wie wil jij als eerste ontmoeten? Kom langs aan het Noordeinde 12. 🌞
 
-#cafetariadezon #zwartewaal #voorneaanzee #cafetaria #afhalen
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
 
-## C2: Carrousel: zin in iets lekkers?
+## C2: Carrousel: afhalen in 4 stappen
 
 - **Plaatsing:** Instagram carrousel (+ Facebook)
 - **Doel:** Uitleggen hoe afhalen werkt
 - **CTA:** Bel 0181 66 36 69
 - **Beeld:** Klaar (grafisch)
 
-Zin in iets lekkers? In vier stappen: kies, bel, haal af, betaal.
-Pinnen of contant, aan het Noordeinde 12 in Zwartewaal.
+Afhalen bij De Zon in vier stappen: kies, bel, haal af en betaal met pin of contant.
+Bel 0181 66 36 69. Noordeinde 12, dinsdag t/m zondag vanaf 12:30 uur.
 
-#afhalen #cafetariadezon #zwartewaal #voorneaanzee #cafetaria
+#cafetariadezon #zwartewaal #voorneaanzee #frites #friet #afhalen
 
-## C3: Carrousel: jouw keuze
+## C3: Carrousel: welk type ben jij?
 
 - **Plaatsing:** Instagram carrousel (+ Facebook)
-- **Doel:** Interactie en inzicht in voorkeuren (voor later echte 'populair'-posts)
-- **CTA:** Reageer met jouw cijfer
+- **Doel:** Interactie, delen en inzicht in voorkeuren
+- **CTA:** Reageer met jouw letter
 - **Beeld:** Klaar (grafisch)
 
-Jouw keuze bij De Zon! 1 frites, 2 hamburger, 3 snacks, 4 vegetarisch, 5 ijs.
-Reageer met jouw cijfer, dan tellen wij mee. 🌞
+Welk type ben jij? A is Frietje, B is Burg, C is Snack, D is IJsje.
+Reageer met jouw letter en tag iemand die zeker een Burg is. 🌞
 
-#cafetariadezon #zwartewaal #voorneaanzee #cafetaria
+#cafetariadezon #zwartewaal #voorneaanzee #snacks #cafetaria #afhalen
 
 ## M1: Video: De Zon gaat op
 
@@ -170,21 +204,21 @@ Reageer met jouw cijfer, dan tellen wij mee. 🌞
 - **Beeld:** Klaar (motion graphic)
 
 De Zon gaat op: dinsdag t/m zondag vanaf 12:30 uur. 🌞
-Noordeinde 12, Zwartewaal. Bel 0181 66 36 69.
+Noordeinde 12, Zwartewaal. Pinnen of contant. Bel 0181 66 36 69.
 
-#cafetariadezon #zwartewaal #voorneaanzee #afhalen
+#cafetariadezon #zwartewaal #voorneaanzee #brielle #vierpolders
 
 ## M2: Video: zin in…
 
-- **Plaatsing:** Reel (9:16, 9 sec)
+- **Plaatsing:** Reel (9:16, 9,5 sec)
 - **Doel:** Categorieën tonen
 - **CTA:** Bel 0181 66 36 69
 - **Beeld:** Klaar (motion graphic)
 
-Waar heb jij zin in? Frites, hamburgers, snacks, vegetarisch, ijs of een drankje.
-Haal af bij De Zon, Noordeinde 12.
+Waar heb jij zin in? Frites, hamburgers, snacks, vegetarisch of een ijsje.
+Haal af bij De Zon, Noordeinde 12. Bel 0181 66 36 69.
 
-#cafetariadezon #zwartewaal #voorneaanzee #frites #snacks
+#cafetariadezon #zwartewaal #voorneaanzee #frites #friet #afhalen
 
 ## M3: Video: afhalen in 3 stappen
 
@@ -194,8 +228,21 @@ Haal af bij De Zon, Noordeinde 12.
 - **Beeld:** Klaar (motion graphic)
 
 Afhalen bij De Zon in drie stappen: kies, bel, haal af. Pinnen of contant.
+Bel 0181 66 36 69.
 
-#afhalen #cafetariadezon #zwartewaal #voorneaanzee
+#cafetariadezon #zwartewaal #voorneaanzee #frites #friet #afhalen
+
+## M4: Video: Frietje tegen Burg
+
+- **Plaatsing:** Reel (9:16, 10 sec)
+- **Doel:** Entertainment, delen en reacties
+- **CTA:** Kom langs en kies zelf
+- **Beeld:** Klaar (motion graphic)
+
+Frietje tegen Burg. Wie wint? Snack bemoeit zich ermee. 🌞
+Kom langs en kies zelf: Noordeinde 12, dinsdag t/m zondag vanaf 12:30 uur.
+
+#cafetariadezon #zwartewaal #voorneaanzee #frites #friet #afhalen
 
 ## S01: Story: onze week
 
@@ -226,7 +273,7 @@ Voeg de poll-sticker toe: Frites / Snack.
 - **CTA:** Vraag-sticker
 - **Beeld:** Klaar
 
-Voeg de vraag-sticker toe. Deel mooie antwoorden alleen na toestemming van de afzender.
+Voeg de vraag-sticker toe. Deel mooie antwoorden alleen na toestemming.
 
 
 
@@ -282,6 +329,28 @@ Alleen plaatsen als ijs op dat moment verkrijgbaar is (bevestig met eigenaar).
 - **Beeld:** Klaar
 
 Deel reacties door in je story, met toestemming.
+
+
+
+## S09: Story: quiz, welk type ben jij?
+
+- **Plaatsing:** Story
+- **Doel:** Interactie en doorverwijzing naar de carrousel
+- **CTA:** Quiz-sticker
+- **Beeld:** Klaar
+
+Voeg de quiz-sticker toe met de opties A, B, C en D. Verwijs naar de carrousel ‘Welk type ben jij?’.
+
+
+
+## S10: Story: De Zon gaat op
+
+- **Plaatsing:** Story
+- **Doel:** Openingsmoment markeren
+- **CTA:** Countdown-sticker
+- **Beeld:** Klaar
+
+Voeg de afteller-sticker toe tot 12:30 uur op een openingsdag.
 
 
 

@@ -1,0 +1,109 @@
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("fonts/bricolage.woff2") format("woff2");
+  font-weight: 200 800;
+}
+
+:root {
+  --paper: oklch(0.974 0.03 88);
+  --paper-2: oklch(0.938 0.059 88);
+  --sun: oklch(0.813 0.167 82);
+  --amber: oklch(0.813 0.165 75);
+  --ink: oklch(0.24 0.032 55);
+  --ink-2: oklch(0.412 0.038 59);
+  --ember: oklch(0.533 0.169 39);
+  --ember-bright: oklch(0.644 0.192 42);
+  --leaf: oklch(0.62 0.12 130);
+  --night: oklch(0.226 0.008 59);
+  --night-2: oklch(0.274 0.013 62);
+  --night-ink: oklch(0.96 0.03 86);
+  --night-ink-2: oklch(0.81 0.035 80);
+  --font: "Bricolage Grotesque", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; }
+body { font-family: var(--font); color: var(--ink); overflow: hidden; -webkit-font-smoothing: antialiased; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.icon { width: 1em; height: 1em; flex: none; }
+.ill { display: block; width: 100%; height: 100%; }
+
+/* Formaten */
+.f-feed { width: 1080px; height: 1350px; }
+.f-square { width: 1080px; height: 1080px; }
+.f-story { width: 1080px; height: 1920px; }
+.f-cover { width: 1640px; height: 624px; }
+
+.post { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.bg-sun { background: var(--sun); color: var(--ink); }
+.bg-paper { background: var(--paper); color: var(--ink); }
+.bg-paper2 { background: var(--paper-2); color: var(--ink); }
+.bg-ember { background: var(--ember); color: var(--paper); }
+.bg-night { background: var(--night); color: var(--night-ink); }
+
+/* Typografie */
+.h1 { font-size: 160px; line-height: 0.9; letter-spacing: -0.045em; font-weight: 800; }
+.h1.m { font-size: 128px; }
+.h1.s { font-size: 100px; letter-spacing: -0.04em; }
+.h1.xs { font-size: 76px; letter-spacing: -0.035em; line-height: 0.95; }
+.lead { font-size: 46px; line-height: 1.22; font-weight: 600; letter-spacing: -0.01em; }
+.small { font-size: 32px; font-weight: 700; }
+.accent { color: var(--ember); }
+.bg-night .accent, .bg-ember .accent { color: var(--amber); }
+.bg-sun .accent { color: var(--ember); }
+.bg-ember .accent { color: var(--sun); }
+
+/* Vlakken */
+.pad { position: absolute; inset: 0; padding: 84px 84px 0; }
+.pad.story { padding: 270px 84px 360px; }
+.content { position: relative; z-index: 2; }
+
+.foot { position: absolute; left: 0; right: 0; bottom: 0; height: 108px; z-index: 5; display: flex; align-items: center; gap: 18px; padding: 0 84px; background: var(--night); color: var(--night-ink); font-size: 30px; font-weight: 700; }
+.foot.sunfoot { background: var(--sun); color: var(--ink); }
+.foot.inkfoot { background: var(--ink); color: var(--sun); }
+.foot .sunlogo { width: 52px; height: 52px; color: var(--amber); }
+.foot.sunfoot .sunlogo { color: var(--ember); }
+.foot .grow { flex: 1; }
+.foot .dim { opacity: 0.85; font-weight: 600; }
+
+.topbar { position: absolute; left: 0; right: 0; top: 96px; z-index: 5; display: flex; align-items: center; gap: 16px; padding: 0 84px; font-size: 34px; font-weight: 800; }
+.topbar .sunlogo { width: 56px; height: 56px; color: var(--ember-bright); }
+.bg-ember .topbar .sunlogo { color: var(--sun); }
+.bg-night .topbar .sunlogo { color: var(--amber); }
+.topbar .grow { flex: 1; }
+
+.chip { display: inline-flex; align-items: center; gap: 18px; padding: 24px 40px; border: 5px solid var(--ink); border-radius: 22px; background: var(--paper); color: var(--ink); font-size: 46px; font-weight: 800; letter-spacing: -0.02em; line-height: 1; }
+.chip .icon { font-size: 52px; }
+.chip.ember { background: var(--ember); border-color: var(--ember); color: var(--paper); }
+.chip.sun { background: var(--sun); border-color: var(--sun); color: var(--ink); }
+.chip.ink { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chip.ghost { background: transparent; border-color: currentColor; color: inherit; }
+.bg-night .chip.ghost { color: var(--night-ink); }
+
+.sticker { position: absolute; z-index: 4; width: 280px; height: 280px; border-radius: 50%; background: var(--ember); color: var(--paper); border: 5px solid var(--ink); display: grid; place-items: center; text-align: center; padding: 34px; font-size: 40px; font-weight: 800; line-height: 1.02; letter-spacing: -0.02em; transform: rotate(-10deg); }
+.sticker.sun { background: var(--sun); color: var(--ink); }
+.sticker.ember { background: var(--ember); color: var(--paper); }
+.sticker.paper { background: var(--paper); color: var(--ink); }
+.sticker.night { background: var(--night); color: var(--night-ink); border-color: var(--night-ink); }
+
+.arc { position: absolute; fill: none; stroke: currentColor; stroke-width: 5; stroke-dasharray: 0.1 18; stroke-linecap: round; }
+
+.abs { position: absolute; }
+.row { display: flex; align-items: center; }
+.swipe { position: absolute; left: 84px; bottom: 150px; z-index: 6; display: inline-flex; align-items: center; gap: 14px; font-size: 38px; font-weight: 800; }
+.swipe .icon { font-size: 58px; }
+.count { position: absolute; right: 84px; top: 96px; z-index: 6; font-size: 38px; font-weight: 800; }
+
+/* Week-tabel */
+.week { width: 100%; border-collapse: collapse; font-size: 58px; font-weight: 800; letter-spacing: -0.02em; }
+.week td { padding: 22px 0; border-bottom: 4px solid color-mix(in oklch, currentColor 25%, transparent); }
+.week td:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.week tr.dim { opacity: 0.55; }
+
+/* Foto-slot */
+.slot { border: 6px dashed var(--ink); border-radius: 40px; display: grid; place-items: center; text-align: center; font-size: 48px; font-weight: 800; color: var(--ink-2); background: var(--paper-2); }
+.photo { border-radius: 40px; overflow: hidden; border: 5px solid var(--ink); }
+.photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Regen-patroon */
+.rain { position: absolute; inset: 0; background-image: repeating-linear-gradient(105deg, transparent 0 46px, color-mix(in oklch, var(--ink) 14%, transparent) 46px 50px); mask-image: linear-gradient(to bottom, black 0, black 40%, transparent 70%); }

@@ -1,4 +1,5 @@
-// Alle social-stukken als HTML. Bevestigde feiten staan in FACTS; verzin hier niets bij.
+// Alle social-stukken als HTML, versie 2 ("De bende van De Zon"). Bevestigde feiten staan in FACTS; verzin hier niets bij.
+import { char } from "./personages.mjs";
 export const FACTS = {
   naam: "Cafetaria De Zon",
   adres: "Noordeinde 12",
@@ -20,212 +21,429 @@ export const FACTS = {
 const ill = (n, style = "") => `<svg class="ill" style="${style}" aria-hidden="true"><use href="#ill-${n}"/></svg>`;
 const ic = (n) => `<svg class="icon" aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const abs = (inner, style) => `<div class="abs" style="${style}">${inner}</div>`;
-const foot = (v = "") => `<div class="foot ${v}"><svg class="sunlogo" aria-hidden="true"><use href="#ill-zon"/></svg><span>Cafetaria De Zon</span><span class="grow"></span><span class="dim">Noordeinde 12, Zwartewaal</span></div>`;
-const top = (right = "") => `<div class="topbar"><svg class="sunlogo" aria-hidden="true"><use href="#ill-zon"/></svg><span>De Zon</span><span class="grow"></span><span>${right}</span></div>`;
+const C = (name, o = {}) => char(name, o);
+const at = (name, o, x, y, z = 2) => char(name, { ...o, style: `left:${x}px;top:${y}px;z-index:${z};${o.style || ""}` });
+const sunlogo = `<svg class="sunlogo" aria-hidden="true"><use href="#ill-zon"/></svg>`;
+const brandbar = (right = "Noordeinde 12, Zwartewaal") => `<div class="brandbar">${sunlogo}<span>Cafetaria De Zon</span><span class="grow"></span><span class="dim">${right}</span></div>`;
+const infobar = () => `<div class="infobar"><div><span class="lab">Open · ma dicht</span><b>Di t/m do</b> 12:30 – 22:00<br><b>Vr en za</b> 12:30 – 23:00<br><b>Zo</b> 12:30 – 21:00</div><div><span class="lab">Adres</span><span class="big">Noordeinde 12</span><br>3238 BG Zwartewaal</div><div><span class="lab">Bel en haal af</span><span class="big">${FACTS.tel}</span><br>Pinnen of contant</div></div>`;
 const bel = (cls = "") => `<span class="chip ${cls}">${ic("phone")}Bel ${FACTS.tel}</span>`;
-const rays = (cx, cy, r1, r2, from, to, step, sw = 7) => {
-  let out = "";
-  for (let a = from; a <= to; a += step) {
-    const t = (a * Math.PI) / 180;
-    out += `<line x1="${(cx + r1 * Math.cos(t)).toFixed(1)}" y1="${(cy - r1 * Math.sin(t)).toFixed(1)}" x2="${(cx + r2 * Math.cos(t)).toFixed(1)}" y2="${(cy - r2 * Math.sin(t)).toFixed(1)}" stroke="var(--ink)" stroke-width="${sw}" stroke-linecap="round"/>`;
+const bub = (text, style, { cls = "", small = "", tail = 70 } = {}) => `<div class="bub ${cls}" style="--tl:${tail}px;${style}">${text}${small ? `<small>${small}</small>` : ""}</div>`;
+const tag = (text, style, cls = "") => `<div class="tag ${cls}" style="${style}">${text}</div>`;
+const star = (text, { x, y, size = 260, fill = "var(--ember-bright)", rot = -8, color = "var(--ink)", fs = 46, n = 14 }) => {
+  let pts = "";
+  for (let i = 0; i < n * 2; i++) {
+    const a = (i / (n * 2)) * Math.PI * 2, r = i % 2 ? 0.78 : 1;
+    pts += `${(50 + 49 * r * Math.cos(a)).toFixed(1)},${(50 + 49 * r * Math.sin(a)).toFixed(1)} `;
   }
-  return out;
+  return `<div class="star" style="left:${x}px;top:${y}px;width:${size}px;height:${size}px;transform:rotate(${rot}deg);font-size:${fs}px;color:${color}"><svg viewBox="0 0 100 100"><polygon points="${pts}" fill="${fill}" stroke="var(--ink)" stroke-width="2.2" stroke-linejoin="round"/></svg><span>${text}</span></div>`;
 };
+const tick = (text, top, cls = "", rot = 0, n = 4) => `<div class="ticker ${cls}" style="top:${top}px;transform:rotate(${rot}deg)">${Array.from({ length: n }, () => `<span>${text}</span><i></i>`).join("")}</div>`;
+const burst = (b1, b2, x = "50%", y = "60%") => `<div class="burst" style="--b1:${b1};--b2:${b2};transform-origin:${x} ${y}"></div>`;
+const dots = (o = 0.14, extra = "") => `<div class="dots ${extra}" style="--o:${o}"></div>`;
+const grain = `<div class="grain"></div>`;
+const post = (bg, inner, fmt = "f-feed") => `<div class="post ${bg} ${fmt}">${inner}${grain}</div>`;
 
 const pieces = [];
+export default pieces;
 const add = (id, folder, file, fmt, html, meta = {}) => pieces.push({ id, folder, file, fmt, html, ...meta });
 
 /* ============ FEEDPOSTS 1080x1350 ============ */
-add("F01", "feed-posts", "F01-intro-hoi-zwartewaal", "f-feed", `
-<div class="post bg-sun f-feed">
-  <svg class="abs arc" viewBox="0 0 1080 700" style="left:0;top:542px;width:1080px;height:700px;color:var(--ink)"><path d="M90 700A450 450 0 0 1 990 700"/></svg>
-  <svg class="abs" viewBox="0 0 1080 480" style="left:0;top:762px;width:1080px;height:480px">
-    ${rays(540, 480, 300, 370, 12, 168, 24)}
-    <circle cx="540" cy="480" r="260" fill="var(--ember-bright)" stroke="var(--ink)" stroke-width="7"/>
-  </svg>
-  <div class="pad"><h1 class="h1 m">Hoi<br>Zwartewaal.</h1><p class="lead" style="margin-top:40px;max-width:13em">Wij zijn Cafetaria De Zon, aan het Noordeinde 12.</p></div>
-  ${foot("inkfoot")}
-</div>`);
+add("F01", "feed-posts", "F01-intro-hoi-zwartewaal", "f-feed", post("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "50%", "70%")}${dots(0.1)}
+  ${at("zon", { mood: "cool", pose: "cheer", size: 400 }, 660, 190, 2)}
+  <h1 class="hx l sh abs" style="left:70px;top:84px;z-index:6">Hoi<br>Zwartewaal.</h1>
+  ${tag("Wij zijn de bende van De Zon", "left:70px;top:420px;transform:rotate(-3deg)", "ember")}
+  ${tag("Dinsdag t/m zondag open", "left:110px;top:520px;transform:rotate(2deg)", "")}
+  ${at("frietje", { mood: "happy", pose: "wave", size: 410 }, -30, 730, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 480 }, 170, 680, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 400 }, 480, 750, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 380 }, 690, 760, 5)}
+  ${at("slaatje", { mood: "happy", pose: "hips", size: 300 }, 860, 840, 3)}
+  ${infobar()}`));
 
-add("F02", "feed-posts", "F02-frites-zin-in-frites", "f-feed", `
-<div class="post bg-paper f-feed">
-  ${abs(ill("frites"), "right:-30px;bottom:130px;width:760px;height:760px;transform:rotate(7deg)")}
-  <div class="pad"><h1 class="h1">Zin<br>in<br>frites?</h1></div>
-  ${abs(bel("ember"), "left:84px;bottom:160px")}
-  <div class="sticker sun" style="left:84px;top:690px">Afhalen kan</div>
-  ${foot()}
-</div>`);
+add("F02", "feed-posts", "F02-frites-zin-in-frites", "f-feed", post("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "70%", "62%")}${dots(0.1)}
+  <h1 class="hx xl sh abs" style="left:70px;top:84px;z-index:6">Zin<br>in frites?</h1>
+  ${at("frietje", { mood: "wow", pose: "up", size: 720, rot: 4 }, 350, 360, 3)}
+  ${bub("Ik zou<br>wel weten<br>wat.", "left:70px;top:700px;transform:rotate(-3deg)", { tail: 330 })}
+  ${tag("Afhalen kan", "left:90px;top:1000px;transform:rotate(-6deg)", "ember")}
+  ${infobar()}`));
 
-add("F03", "feed-posts", "F03-hamburgers-burgerzin", "f-feed", `
-<div class="post bg-ember f-feed">
-  ${abs(ill("hamburger"), "right:-40px;bottom:120px;width:800px;height:800px;transform:rotate(-6deg)")}
-  <div class="pad"><h1 class="h1">Burger-<br>zin?</h1><p class="lead" style="margin-top:36px;max-width:11em">Haal ’m af aan het Noordeinde.</p></div>
-  ${abs(`<span class="chip">${ic("map-pin")}Noordeinde 12</span>`, "left:84px;bottom:160px")}
-  ${foot("sunfoot")}
-</div>`);
+add("F03", "feed-posts", "F03-hamburgers-burgerzin", "f-feed", post("bg-ember", `
+  ${burst("var(--ember)", "oklch(0.58 0.17 40)", "30%", "62%")}${dots(0.12)}
+  <h1 class="hx xl sh abs" style="left:70px;top:84px;z-index:6">Burger-<br>zin?</h1>
+  ${at("burg", { mood: "cool", pose: "point", size: 720, rot: -3 }, 90, 400, 3)}
+  ${bub("Iemand zei<br>burger?", "right:60px;top:560px;transform:rotate(3deg)", { cls: "sun tr", tail: 120 })}
+  ${tag("Haal 'm af", "right:70px;top:1000px;transform:rotate(4deg)", "ember")}
+  ${infobar()}`));
 
-add("F04", "feed-posts", "F04-snacks-snacktijd-vraag", "f-feed", `
-<div class="post bg-night f-feed">
-  ${abs(ill("snack"), "right:-20px;bottom:130px;width:700px;height:700px;transform:rotate(8deg)")}
-  <div class="pad"><h1 class="h1">Snack-<br>tijd.</h1><p class="lead" style="margin-top:36px;max-width:11em">Wat is jouw favoriet? <span class="accent">Zeg het in de reacties.</span></p></div>
-  ${abs(`<span class="chip sun">${ic("message-circle")}Reageer hieronder</span>`, "left:84px;bottom:160px")}
-  ${foot("sunfoot")}
-</div>`);
+add("F04", "feed-posts", "F04-snacks-snacktijd-vraag", "f-feed", post("bg-night", `
+  ${burst("var(--night)", "var(--night-2)", "70%", "60%")}${dots(0.16)}
+  <h1 class="hx xl abs z6" style="left:70px;top:84px;color:var(--sun);text-shadow:8px 8px 0 var(--ember)">Snack-<br>tijd.</h1>
+  ${at("snack", { mood: "happy", pose: "cheer", size: 700, rot: 5 }, 400, 380, 3)}
+  ${bub("Wat is jouw<br>favoriet?", "left:70px;top:700px;transform:rotate(-3deg)", { small: "Zeg het in de reacties.", tail: 360 })}
+  <div class="abs z6" style="left:70px;top:1000px"><span class="chip sun">${ic("message-circle")}Reageer hieronder</span></div>
+  ${infobar()}`));
 
-add("F05", "feed-posts", "F05-vegetarisch-geen-vlees-ook-prima", "f-feed", `
-<div class="post bg-paper2 f-feed">
-  ${abs(ill("blad"), "right:-20px;bottom:290px;width:600px;height:600px;transform:rotate(6deg)")}
-  <div class="pad"><h1 class="h1 m">Geen<br>vlees?<br><span class="accent">Ook prima.</span></h1><p class="lead" style="margin-top:36px;max-width:11em">Vegetarisch kan bij De Zon.</p></div>
-  ${abs(bel("ink"), "left:84px;bottom:160px")}
-  ${foot()}
-</div>`);
+add("F05", "feed-posts", "F05-vegetarisch-geen-vlees-ook-prima", "f-feed", post("bg-paper2", `
+  ${burst("var(--paper-2)", "var(--paper)", "60%", "65%")}${dots(0.1)}
+  <h1 class="hx l shs abs z6" style="left:70px;top:84px">Geen vlees?<br>Ook prima.</h1>
+  ${at("slaatje", { mood: "wink", pose: "hips", size: 700, rot: -4 }, 330, 400, 3)}
+  ${bub("Vegetarisch kan<br>bij De Zon.", "left:70px;top:720px;transform:rotate(-3deg)", { cls: "sun", tail: 300 })}
+  ${tag("Vraag ernaar bij de balie", "left:70px;top:1010px;transform:rotate(-3deg)", "ember")}
+  ${infobar()}`));
 
-add("F06", "feed-posts", "F06-merkpost-bij-de-zon-schijnt-het-altijd", "f-feed", `
-<div class="post bg-sun f-feed">
-  <div class="rain"></div>
-  <svg class="abs" viewBox="0 0 1080 520" style="left:0;top:722px;width:1080px;height:520px">
-    ${rays(540, 520, 330, 410, 8, 172, 18)}
-    <circle cx="540" cy="520" r="290" fill="var(--ember-bright)" stroke="var(--ink)" stroke-width="7"/>
-  </svg>
-  <div class="pad"><p class="lead" style="font-size:60px;font-weight:700">Het regent.</p><h1 class="h1 s" style="margin-top:20px">Bij De Zon schijnt het altijd.</h1></div>
-  ${foot("inkfoot")}
-</div>`);
+add("F06", "feed-posts", "F06-merkpost-bij-de-zon-schijnt-het-altijd", "f-feed", post("bg-paper2", `
+  ${burst("var(--paper-2)", "var(--paper)", "50%", "60%")}
+  <div class="rain" style="opacity:.9"></div>
+  <p class="abs z6 lead" style="left:70px;top:86px;font-size:62px;font-weight:800;letter-spacing:-0.03em">Het regent.</p>
+  <h1 class="hx m shs abs z6" style="left:70px;top:176px">Bij De Zon<br>schijnt het<br>altijd.</h1>
+  ${at("zon", { mood: "cool", pose: "cheer", size: 760 }, 330, 440, 3)}
+  ${tag("Haal wat lekkers af", "left:70px;top:1050px;transform:rotate(-4deg)", "ember")}
+  ${infobar()}`));
 
-add("F07", "feed-posts", "F07-achter-de-balie-FOTO-NODIG", "f-feed", `
-<div class="post bg-paper f-feed">
-  <div class="abs slot" style="left:84px;right:84px;top:84px;height:760px">Hier komt jullie foto<br>van de balie</div>
-  <div class="pad" style="padding-top:900px"><h1 class="h1 xs">Een kijkje achter de balie.</h1><p class="lead" style="margin-top:24px;font-size:42px">Zo ziet het eruit aan het Noordeinde.</p></div>
-  ${foot()}
-</div>`, { needsPhoto: true });
+add("F07", "feed-posts", "F07-achter-de-balie-FOTO-NODIG", "f-feed", post("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "50%", "50%")}${dots(0.1)}
+  <h1 class="hx m sh abs z6" style="left:70px;top:84px">Kijkje<br>achter de balie.</h1>
+  <div class="slot abs z3" style="left:110px;top:420px;width:860px;height:740px;border-radius:24px;transform:rotate(-2deg);border-width:8px;background:var(--paper)">FOTO NODIG<br>Balie of medewerker aan het werk<br>(met toestemming)</div>
+  ${at("zon", { mood: "wink", pose: "cheer", size: 300 }, 760, 250, 5)}
+  ${infobar()}`), { needsPhoto: true });
 
-add("F08", "feed-posts", "F08-bezoek-kom-langs", "f-feed", `
-<div class="post bg-night f-feed">
-  <div class="pad"><h1 class="h1">Kom<br>langs.</h1></div>
-  ${abs(`<div style="background:var(--paper);color:var(--ink);border:8px solid var(--ink);outline:6px solid var(--paper);border-radius:28px;padding:44px 56px 48px"><div style="font-size:112px;font-weight:800;letter-spacing:-0.04em;line-height:.95">Noordeinde 12</div><div style="margin-top:14px;font-size:54px;font-weight:700">3238 BG Zwartewaal</div></div>`, "left:84px;right:84px;top:640px")}
-  ${abs(`<span class="chip sun">Dinsdag t/m zondag open</span>`, "left:84px;bottom:160px")}
-  ${foot("sunfoot")}
-</div>`);
+add("F08", "feed-posts", "F08-bezoek-kom-langs", "f-feed", post("bg-night", `
+  ${burst("var(--night)", "var(--night-2)", "50%", "50%")}${dots(0.14)}
+  <h1 class="hx xl abs z6" style="left:70px;top:84px;color:var(--sun);text-shadow:8px 8px 0 var(--ember)">Kom<br>langs.</h1>
+  <div class="hard abs z4" style="left:70px;top:500px;width:940px;height:330px;transform:rotate(-2deg);padding:34px 44px">
+    <div style="font-size:112px;font-weight:800;letter-spacing:-0.045em;line-height:.9">Noordeinde</div>
+    <div style="font-size:48px;font-weight:700;margin-top:22px">3238 BG Zwartewaal</div>
+  </div>
+  ${star("12", { x: 760, y: 420, size: 300, rot: 8, fs: 130, fill: "var(--sun)" })}
+  <div class="abs z6" style="left:70px;top:900px"><span class="chip sun" style="font-size:40px;padding:20px 30px">Dinsdag t/m zondag open</span></div>
+  ${at("frietje", { mood: "happy", pose: "wave", size: 380 }, 270, 830, 2)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 500 }, 610, 740, 2)}
+  ${infobar()}`));
 
-add("F09", "feed-posts", "F09-interactie-frites-of-snack", "f-feed", `
-<div class="post bg-paper f-feed">
-  <div class="abs" style="left:0;top:0;width:540px;height:1242px;background:var(--sun)"></div>
-  <div class="abs" style="left:540px;top:0;width:540px;height:1242px;background:var(--ember)"></div>
-  <div class="pad"><h1 class="h1 xs" style="position:relative;z-index:3;max-width:6em">Kies<br>er één.</h1></div>
-  ${abs(ill("frites"), "left:-30px;top:500px;width:520px;height:520px;transform:rotate(-6deg)")}
-  ${abs(ill("snack"), "left:570px;top:500px;width:500px;height:500px;transform:rotate(6deg)")}
-  ${abs(`<span style="font-size:110px;font-weight:800;letter-spacing:-0.04em">1</span><br><span style="font-size:64px;font-weight:800">Frites</span>`, "left:84px;top:1020px;line-height:1")}
-  ${abs(`<span style="font-size:110px;font-weight:800;letter-spacing:-0.04em;color:var(--paper)">2</span><br><span style="font-size:64px;font-weight:800;color:var(--paper)">Snack</span>`, "left:624px;top:1020px;line-height:1")}
-  <div class="abs" style="left:430px;top:380px;width:220px;height:220px;border-radius:50%;background:var(--paper);border:6px solid var(--ink);display:grid;place-items:center;font-size:84px;font-weight:800;z-index:4">of?</div>
-  ${foot()}
-</div>`);
+const checkIc = `<svg viewBox="0 0 48 48"><path d="M10 25l10 10 18-22"/></svg>`;
 
-add("F10", "feed-posts", "F10-afhalen-geen-zin-om-te-koken", "f-feed", `
-<div class="post bg-paper f-feed">
-  ${abs(ill("frites"), "right:-10px;bottom:130px;width:640px;height:640px;transform:rotate(-5deg)")}
-  <div class="pad"><h1 class="h1 m">Geen zin om te koken?</h1><p class="lead" style="margin-top:36px;max-width:12em">Haal het bij De Zon.</p></div>
-  <div class="sticker ember" style="left:84px;top:720px">Pinnen of contant</div>
-  ${abs(bel("ember"), "left:84px;bottom:160px")}
-  ${foot()}
-</div>`);
+add("F09", "feed-posts", "F09-interactie-frites-of-snack", "f-feed", post("bg-sun", `
+  <div class="abs" style="inset:0;background:var(--ember);clip-path:polygon(54% 0,100% 0,100% 100%,46% 100%)"></div>
+  ${dots(0.12)}
+  <h1 class="hx l abs z6" style="left:70px;top:84px;color:var(--ink);text-shadow:7px 7px 0 var(--paper)">Kies er één.</h1>
+  ${at("frietje", { mood: "happy", pose: "cheer", size: 520 }, -20, 480, 3)}
+  ${at("snack", { mood: "cool", pose: "cheer", size: 460, flip: true }, 600, 520, 3)}
+  ${star("VS", { x: 400, y: 560, size: 280, rot: -8, fs: 110, fill: "var(--paper)" })}
+  <div class="nr abs z6" style="left:200px;top:300px">1</div><div class="nr abs z6" style="left:820px;top:300px">2</div>
+  <p class="abs z6" style="left:110px;top:410px;font-size:54px;font-weight:800;letter-spacing:-0.03em">Frites</p>
+  <p class="abs z6" style="left:760px;top:410px;font-size:54px;font-weight:800;letter-spacing:-0.03em;color:var(--paper)">Snack</p>
+  ${tag("Reageer met 1 of 2", "left:330px;top:1040px;transform:rotate(-3deg)", "ink")}
+  ${infobar()}`));
+
+add("F10", "feed-posts", "F10-afhalen-geen-zin-om-te-koken", "f-feed", post("bg-paper", `
+  ${burst("var(--paper)", "var(--paper-2)", "50%", "60%")}${dots(0.1)}
+  <h1 class="hx l shs abs z6" style="left:70px;top:84px">Geen zin<br>om te koken?</h1>
+  ${tag("Wij wel.", "left:70px;top:420px;transform:rotate(-4deg)", "ember")}
+  ${at("burg", { mood: "happy", pose: "hips", size: 470 }, 70, 560, 3)}
+  ${at("frietje", { mood: "wow", pose: "up", size: 470 }, 500, 540, 4)}
+  ${star("Pinnen<br>of<br>contant", { x: 800, y: 380, size: 250, rot: 10, fs: 40, fill: "var(--sun)" })}
+  ${bub("Bel, kies,<br>haal af.", "left:300px;top:420px;transform:rotate(2deg);font-size:48px", { cls: "sun", tail: 60 })}
+  ${infobar()}`));
+
+add("F11", "feed-posts", "F11-maandag-de-zon-slaapt", "f-feed", post("bg-night", `
+  ${burst("var(--night)", "var(--night-2)", "50%", "50%")}${dots(0.12)}
+  <h1 class="hx l abs z6 sh e" style="left:70px;top:84px">Maandag:<br>de Zon<br>slaapt.</h1>
+  ${at("zon", { mood: "sleep", pose: "none", size: 640 }, 380, 400, 3)}
+  <div class="zzz" style="left:830px;top:410px;font-size:120px">Z</div><div class="zzz" style="left:900px;top:330px;font-size:90px">z</div><div class="zzz" style="left:950px;top:270px;font-size:64px">z</div>
+  ${tag("Dinsdag zijn we er weer", "left:70px;top:620px;transform:rotate(-4deg)", "sun")}
+  ${tag("Vanaf 12:30 uur", "left:130px;top:730px;transform:rotate(3deg)", "")}
+  ${infobar()}`));
+
+add("F12", "feed-posts", "F12-late-zon-vrijdag-zaterdag", "f-feed", post("bg-night", `
+  <div class="abs" style="inset:0;background:linear-gradient(180deg,var(--night) 0%,oklch(0.36 0.1 35) 58%,var(--ember) 100%)"></div>
+  <div class="abs" style="left:150px;top:700px;width:780px;height:780px;border-radius:50%;background:var(--ember-bright);border:8px solid var(--ink)"></div>
+  ${dots(0.1)}
+  <h1 class="hx xl abs z6" style="left:70px;top:84px;color:var(--sun);text-shadow:8px 8px 0 var(--ink)">Late<br>Zon.</h1>
+  ${at("zon", { mood: "cool", pose: "cheer", size: 520, rot: 6 }, 520, 130, 3)}
+  ${bub("Vrijdag en zaterdag<br>tot 23:00.", "left:70px;top:560px;transform:rotate(-3deg)", { cls: "sun", tail: 300, small: "Zondag tot 21:00." })}
+  ${at("burg", { mood: "cool", pose: "cheer", size: 470 }, 30, 700, 4)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 450 }, 600, 720, 4)}
+  ${infobar()}`));
+
+add("F13", "feed-posts", "F13-pinnen-of-contant", "f-feed", post("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "30%", "50%")}${dots(0.1)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:84px">Pinnen of<br>contant?</h1>
+  <div class="hard abs z4" style="left:70px;top:420px;width:620px;padding:34px 40px;transform:rotate(-2deg)">
+    ${["Pinnen", "Contant", "Honger"].map((t) => `<div style="display:flex;align-items:center;gap:30px;padding:16px 0;font-size:76px;font-weight:800;letter-spacing:-0.04em"><span class="check">${checkIc}</span>${t}</div>`).join("")}
+  </div>
+  ${at("snack", { mood: "happy", pose: "cheer", size: 520, rot: 5 }, 600, 520, 5)}
+  ${tag("Allebei kan.", "left:90px;top:960px;transform:rotate(-4deg)", "ember")}
+  ${infobar()}`));
 
 /* ============ CARROUSELS 1080x1350 ============ */
-const slide = (bg, n, total, inner, last = false, footV = "") => `
-<div class="post ${bg} f-feed">
-  ${top("")}
-  <div class="count">${n}/${total}</div>
-  ${inner}
-  ${last ? "" : `<div class="swipe">Swipe ${ic("arrow-right")}</div>`}
-  ${foot(footV)}
-</div>`;
-const catSlide = (bg, n, total, word, tag, ills, footV) =>
+const slide = (bg, n, total, inner, { last = false, swipe = true } = {}) => post(bg, `${inner}<div class="count" style="z-index:9;${bg === "bg-night" || bg === "bg-ember" ? "color:var(--paper)" : ""}">${n}/${total}</div>${last ? infobar() : swipe ? `<div class="swipe" style="z-index:9;bottom:250px;${bg === "bg-night" ? "color:var(--sun)" : ""}">Swipe ${ic("arrow-right")}</div>${infobar()}` : infobar()}`);
+const profile = (n, total, { bg, name, who, mood, pose, rows, tagline, fill }) =>
   slide(bg, n, total, `
-  <div class="pad" style="padding-top:260px"><h1 class="h1 ${word.length > 9 ? "m" : ""}">${word}</h1><p class="lead" style="margin-top:30px;max-width:10em">${tag}</p></div>
-  ${ills}`, false, footV);
+  ${burst(fill[0], fill[1], "30%", "55%")}${dots(0.1)}
+  <h1 class="hx xl abs z6 ${bg === "bg-paper" || bg === "bg-paper2" ? "shs" : "sh"}" style="left:70px;top:84px">${name}</h1>
+  ${tag(who, "left:76px;top:330px;transform:rotate(-3deg)", "ink")}
+  ${at(name.toLowerCase().replace("ijsje", "ijsje"), { mood, pose, size: 560, rot: -3 }, -40, 470, 3)}
+  <div class="hard abs z5" style="left:430px;top:420px;width:580px;padding:32px 38px;transform:rotate(2deg)">
+    ${rows.map(([k, v]) => `<div style="margin:14px 0"><div style="font-size:26px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--ember)">${k}</div><div style="font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1.02;margin-top:4px">${v}</div></div>`).join("")}
+  </div>
+  ${tagline ? bub(tagline, "left:470px;top:960px;transform:rotate(-2deg);font-size:46px", { cls: "sun", tail: 70 }) : ""}`);
 
-const C1 = [
-  slide("bg-sun", 1, 7, `<div class="pad" style="padding-top:260px"><h1 class="h1">De kaart van De Zon.</h1><p class="lead" style="margin-top:34px">Swipe en kijk wat er is.</p></div>
-    ${abs(ill("frites"), "left:30px;bottom:250px;width:420px;height:420px;transform:rotate(-8deg)")}${abs(ill("hamburger"), "left:330px;bottom:310px;width:420px;height:420px;transform:rotate(4deg)")}${abs(ill("snack"), "left:640px;bottom:260px;width:400px;height:400px;transform:rotate(9deg)")}`, false, "inkfoot"),
-  catSlide("bg-paper", 2, 7, "Frites", "Daar begint het mee.", abs(ill("frites"), "right:-20px;bottom:120px;width:720px;height:720px;transform:rotate(7deg)")),
-  catSlide("bg-ember", 3, 7, "Hamburgers", "Voor de grote trek.", abs(ill("hamburger"), "right:-30px;bottom:120px;width:740px;height:740px;transform:rotate(-6deg)"), "sunfoot"),
-  catSlide("bg-night", 4, 7, "Snacks", "Voor erbij, of ervoor.", abs(ill("snack"), "right:-10px;bottom:130px;width:700px;height:700px;transform:rotate(8deg)"), "sunfoot"),
-  catSlide("bg-paper2", 5, 7, "Vegetarisch", "Zonder vlees, met smaak.", abs(ill("blad"), "right:0;bottom:120px;width:640px;height:640px;transform:rotate(6deg)")),
-  catSlide("bg-sun", 6, 7, "IJs & dranken", "Voor het toetje. Of de dorst.", `${abs(ill("ijs"), "right:230px;bottom:130px;width:480px;height:480px;transform:rotate(-6deg)")}${abs(ill("beker"), "right:10px;bottom:140px;width:420px;height:420px;transform:rotate(8deg)")}`, "inkfoot"),
-  slide("bg-night", 7, 7, `<div class="pad" style="padding-top:260px"><h1 class="h1 m">De actuele kaart? Bel of kom langs.</h1></div>
-    ${abs(bel("sun"), "left:84px;top:800px")}${abs(`<span class="chip ghost">${ic("map-pin")}Noordeinde 12, Zwartewaal</span>`, "left:84px;top:960px")}`, true, "sunfoot"),
-];
+const C1 = 8;
+add("C1-1", "carousels", "C1-slide-1", "f-feed", slide("bg-sun", 1, C1, `
+  ${burst("var(--sun)", "var(--amber)", "50%", "70%")}${dots(0.1)}
+  <h1 class="hx xl sh abs z6" style="left:70px;top:84px">Ontmoet<br>de bende.</h1>
+  ${tag("Swipe en kies je favoriet", "left:70px;top:480px;transform:rotate(-3deg)", "ember")}
+  ${at("zon", { mood: "cool", pose: "cheer", size: 330 }, 700, 440, 2)}
+  ${at("frietje", { mood: "happy", pose: "wave", size: 410 }, -30, 700, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 470 }, 170, 650, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 390 }, 480, 720, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 370 }, 690, 730, 5)}
+  ${at("slaatje", { mood: "happy", pose: "hips", size: 290 }, 860, 810, 3)}`, { swipe: false }));
 
-const stepSlide = (bg, n, total, num, word, sub, extra = "", last = false, footV = "") =>
-  slide(bg, n, total, `<div class="pad" style="padding-top:250px">
-    <div style="width:210px;height:210px;border-radius:50%;background:var(--ember);color:var(--paper);border:6px solid var(--ink);display:grid;place-items:center;font-size:140px;font-weight:800;letter-spacing:-0.04em">${num}</div>
-    <h1 class="h1" style="margin-top:50px">${word}</h1><p class="lead" style="margin-top:30px;max-width:13em">${sub}</p></div>${extra}`, last, footV);
+add("C1-2", "carousels", "C1-slide-2", "f-feed", profile(2, C1, { bg: "bg-sun", name: "Zon", who: "De baas van de zaak", mood: "cool", pose: "cheer", fill: ["var(--sun)", "var(--amber)"], tagline: "Ik open dinsdag t/m zondag om 12:30.",
+  rows: [["Superkracht", "Schijnt. Ook als het regent."], ["Beste vriend", "Iedereen met trek"], ["Houdt niet van", "Maandag. Dan slaapt hij."]] }));
+add("C1-3", "carousels", "C1-slide-3", "f-feed", profile(3, C1, { bg: "bg-paper", name: "Frietje", who: "Altijd in de buurt", mood: "happy", pose: "wave", fill: ["var(--paper)", "var(--paper-2)"], tagline: "Ik deel graag. Echt waar.",
+  rows: [["Superkracht", "Verdwijnt binnen drie minuten"], ["Beste vriend", "Elke snack"], ["Houdt niet van", "Koud worden"]] }));
+add("C1-4", "carousels", "C1-slide-4", "f-feed", profile(4, C1, { bg: "bg-ember", name: "Burg", who: "Stevig en stoer", mood: "cool", pose: "hips", fill: ["var(--ember)", "oklch(0.58 0.17 40)"], tagline: "Past in één hand. Bijna.",
+  rows: [["Superkracht", "Maakt elke trek stil"], ["Beste vriend", "Frietje, natuurlijk"], ["Houdt niet van", "Dieetpraat"]] }));
+add("C1-5", "carousels", "C1-slide-5", "f-feed", profile(5, C1, { bg: "bg-night", name: "Snack", who: "Spontaan en knapperig", mood: "wink", pose: "cheer", fill: ["var(--night)", "var(--night-2)"], tagline: "Eén pakken is nooit genoeg.",
+  rows: [["Superkracht", "Knapperig van buiten"], ["Beste vriend", "Wie hem als eerste pakt"], ["Houdt niet van", "Wachten"]] }));
+add("C1-6", "carousels", "C1-slide-6", "f-feed", profile(6, C1, { bg: "bg-paper2", name: "IJsje", who: "Zoet en cool", mood: "happy", pose: "wave", fill: ["var(--paper-2)", "var(--paper)"], tagline: "Altijd ruimte voor mij.",
+  rows: [["Superkracht", "Koelt je af"], ["Beste vriend", "Frietje, na afloop"], ["Houdt niet van", "Smelten"]] }));
+add("C1-7", "carousels", "C1-slide-7", "f-feed", profile(7, C1, { bg: "bg-sun", name: "Slaatje", who: "Vegetarisch kan ook", mood: "wink", pose: "hips", fill: ["var(--sun)", "var(--amber)"], tagline: "Vegetarisch kan bij De Zon.",
+  rows: [["Superkracht", "Maakt het vegetarisch"], ["Beste vriend", "Iedereen die geen vlees eet"], ["Houdt niet van", "Vergeten worden"]] }));
+add("C1-8", "carousels", "C1-slide-8", "f-feed", slide("bg-sun", 8, C1, `
+  ${burst("var(--sun)", "var(--amber)", "50%", "70%")}${dots(0.1)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:84px">Kom de<br>bende<br>ontmoeten.</h1>
+  ${at("zon", { mood: "cool", pose: "cheer", size: 330 }, 700, 120, 2)}
+  ${at("frietje", { mood: "happy", pose: "wave", size: 400 }, -20, 650, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 460 }, 190, 610, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 380 }, 500, 690, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 360 }, 700, 700, 5)}
+  ${at("slaatje", { mood: "happy", pose: "hips", size: 280 }, 860, 780, 3)}
+  ${tag("Haal af aan het Noordeinde", "left:70px;top:530px;transform:rotate(-3deg)", "ember")}`, { last: true }));
 
-const C2 = [
-  slide("bg-sun", 1, 6, `<div class="pad" style="padding-top:260px"><h1 class="h1">Zin in iets lekkers?</h1><p class="lead" style="margin-top:34px">In vier stappen aan tafel.</p></div>${abs(ill("frites"), "right:-10px;bottom:120px;width:640px;height:640px;transform:rotate(7deg)")}`, false, "inkfoot"),
-  stepSlide("bg-paper", 2, 6, "1", "Kies.", "Frites, een burger, snacks, vegetarisch of een ijsje.", `${abs(ill("hamburger"), "right:-20px;bottom:130px;width:560px;height:560px;transform:rotate(-6deg)")}`),
-  stepSlide("bg-paper2", 3, 6, "2", "Bel.", `<span style="font-size:76px;font-weight:800;letter-spacing:-0.03em">${FACTS.tel}</span>`, `${abs(`<svg class="icon" style="width:380px;height:380px;color:var(--ember)"><use href="#i-phone"/></svg>`, "right:70px;bottom:190px;transform:rotate(-12deg)")}`),
-  stepSlide("bg-ember", 4, 6, "3", "Haal af.", "Aan het Noordeinde 12 in Zwartewaal.", `${abs(`<svg class="icon" style="width:380px;height:380px;color:var(--sun)"><use href="#i-shopping-bag"/></svg>`, "right:70px;bottom:190px;transform:rotate(8deg)")}`, false, "sunfoot"),
-  stepSlide("bg-night", 5, 6, "4", "Betaal.", "Pinnen of contant.", `${abs(`<svg class="icon" style="width:360px;height:360px;color:var(--amber)"><use href="#i-credit-card"/></svg>`, "right:80px;bottom:200px;transform:rotate(-8deg)")}`, false, "sunfoot"),
-  slide("bg-sun", 6, 6, `<div class="pad" style="padding-top:260px"><h1 class="h1">Smullen!</h1><p class="lead" style="margin-top:34px;max-width:12em">Dinsdag t/m zondag vanaf 12:30 uur.</p></div>${abs(bel("ink"), "left:84px;top:900px")}`, true, "inkfoot"),
-];
+const C2 = 6;
+const bignr = (n, x, y) => `<div class="nr abs z6" style="left:${x}px;top:${y}px;width:170px;height:170px;font-size:110px;border-width:8px;box-shadow:10px 10px 0 var(--ink)">${n}</div>`;
+add("C2-1", "carousels", "C2-slide-1", "f-feed", slide("bg-ember", 1, C2, `
+  ${burst("var(--ember)", "oklch(0.58 0.17 40)", "70%", "60%")}${dots(0.12)}
+  <h1 class="hx xl sh abs z6" style="left:70px;top:84px">Afhalen<br>bij De Zon.</h1>
+  ${tag("In 4 simpele stappen", "left:70px;top:480px;transform:rotate(-3deg)", "sun")}
+  ${at("frietje", { mood: "wow", pose: "up", size: 640 }, 400, 520, 3)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 400 }, 20, 700, 4)}`, { swipe: false }));
 
-const keuze = (bg, n, total, num, word, ills, footV, wsize = "") =>
-  slide(bg, n, total, `<div class="pad" style="padding-top:250px"><div style="font-size:220px;font-weight:800;letter-spacing:-0.05em;line-height:.8" class="accent">${num}</div><h1 class="h1 ${wsize}" style="margin-top:30px">${word}</h1></div>${ills}`, false, footV);
-const C3 = [
-  slide("bg-ember", 1, 7, `<div class="pad" style="padding-top:260px"><h1 class="h1 m">Jouw keuze bij De Zon.</h1><p class="lead" style="margin-top:34px;max-width:12em">Swipe en stem in de reacties.</p></div>${abs(ill("snack"), "right:-30px;bottom:120px;width:640px;height:640px;transform:rotate(8deg)")}`, false, "sunfoot"),
-  keuze("bg-paper", 2, 7, "1", "Frites", abs(ill("frites"), "right:-20px;bottom:120px;width:700px;height:700px;transform:rotate(7deg)")),
-  keuze("bg-sun", 3, 7, "2", "Hamburger", abs(ill("hamburger"), "right:-20px;bottom:120px;width:720px;height:720px;transform:rotate(-6deg)"), "inkfoot", "m"),
-  keuze("bg-night", 4, 7, "3", "Snacks", abs(ill("snack"), "right:-10px;bottom:130px;width:680px;height:680px;transform:rotate(8deg)"), "sunfoot"),
-  keuze("bg-paper2", 5, 7, "4", "Vegetarisch", abs(ill("blad"), "right:0;bottom:120px;width:620px;height:620px;transform:rotate(6deg)"), "", "m"),
-  keuze("bg-ember", 6, 7, "5", "IJs", abs(ill("ijs"), "right:10px;bottom:120px;width:640px;height:640px;transform:rotate(-6deg)"), "sunfoot"),
-  slide("bg-sun", 7, 7, `<div class="pad" style="padding-top:260px"><h1 class="h1 m">Welk cijfer is van jou?</h1><p class="lead" style="margin-top:34px;max-width:12em">Reageer hieronder met 1 tot en met 5.</p></div>${abs(`<span class="chip ink">${ic("message-circle")}Jouw cijfer?</span>`, "left:84px;top:860px")}`, true, "inkfoot"),
-];
-C1.forEach((h, i) => add(`C1-${i + 1}`, "carousels/C1-ontdek-de-menukaart", `C1-slide-${i + 1}`, "f-feed", h));
-C2.forEach((h, i) => add(`C2-${i + 1}`, "carousels/C2-zin-in-iets-lekkers", `C2-slide-${i + 1}`, "f-feed", h));
-C3.forEach((h, i) => add(`C3-${i + 1}`, "carousels/C3-jouw-keuze", `C3-slide-${i + 1}`, "f-feed", h));
+add("C2-2", "carousels", "C2-slide-2", "f-feed", slide("bg-sun", 2, C2, `
+  ${burst("var(--sun)", "var(--amber)", "50%", "60%")}${dots(0.1)}
+  ${bignr(1, 70, 84)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:290px">Kies wat<br>je lust.</h1>
+  ${["Frites", "Hamburgers", "Snacks", "Vegetarisch", "IJs", "Dranken"].map((t, i) => tag(t, `left:${[70, 330, 640, 90, 470, 740][i]}px;top:${[640, 700, 640, 790, 830, 770][i]}px;transform:rotate(${[-4, 3, -3, 3, -4, 5][i]}deg);font-size:50px;padding:16px 34px`, ["ember", "", "ink", "", "ember", "sun"][i])).join("")}
+  ${at("frietje", { mood: "happy", pose: "wave", size: 300 }, 640, 130, 3)}
+  ${at("slaatje", { mood: "happy", pose: "hips", size: 250 }, 840, 360, 3)}`));
+
+add("C2-3", "carousels", "C2-slide-3", "f-feed", slide("bg-paper", 3, C2, `
+  ${burst("var(--paper)", "var(--paper-2)", "50%", "60%")}${dots(0.1)}
+  ${bignr(2, 70, 84)}
+  <h1 class="hx l shs abs z6" style="left:70px;top:290px">Bel<br>De Zon.</h1>
+  <div class="hard sun abs z5" style="left:70px;top:680px;width:840px;padding:30px 40px;transform:rotate(-2deg)"><div style="font-size:30px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Bellen kan</div><div style="font-size:98px;font-weight:800;letter-spacing:-0.05em;line-height:1">${FACTS.tel}</div></div>
+  ${tag("Zeg wat je wilt halen", "left:90px;top:960px;transform:rotate(-3deg)", "ember")}
+  ${at("burg", { mood: "happy", pose: "point", size: 400, flip: true }, 640, 230, 3)}`));
+
+add("C2-4", "carousels", "C2-slide-4", "f-feed", slide("bg-night", 4, C2, `
+  ${burst("var(--night)", "var(--night-2)", "50%", "60%")}${dots(0.14)}
+  ${bignr(3, 70, 84)}
+  <h1 class="hx l abs z6" style="left:70px;top:290px;color:var(--sun);text-shadow:8px 8px 0 var(--ember)">Haal af.</h1>
+  <div class="hard abs z4" style="left:70px;top:560px;width:640px;padding:30px 40px;transform:rotate(-2deg)"><div style="font-size:84px;font-weight:800;letter-spacing:-0.045em;line-height:.9">Noordeinde 12</div><div style="font-size:42px;font-weight:700;margin-top:14px">3238 BG Zwartewaal</div></div>
+  ${tag("Dinsdag t/m zondag vanaf 12:30", "left:70px;top:900px;transform:rotate(2deg)", "sun")}
+  ${at("snack", { mood: "happy", pose: "cheer", size: 540, rot: 4 }, 520, 330, 3)}`));
+
+add("C2-5", "carousels", "C2-slide-5", "f-feed", slide("bg-sun", 5, C2, `
+  ${burst("var(--sun)", "var(--amber)", "30%", "50%")}${dots(0.1)}
+  ${bignr(4, 70, 84)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:290px">Pinnen<br>of contant.</h1>
+  <div class="hard abs z4" style="left:70px;top:640px;width:560px;padding:26px 36px;transform:rotate(-2deg)">${["Pinnen", "Contant"].map((t) => `<div style="display:flex;align-items:center;gap:26px;padding:12px 0;font-size:70px;font-weight:800;letter-spacing:-0.04em"><span class="check">${checkIc}</span>${t}</div>`).join("")}</div>
+  ${at("zon", { mood: "cool", pose: "cheer", size: 470 }, 580, 540, 3)}`));
+
+add("C2-6", "carousels", "C2-slide-6", "f-feed", slide("bg-ember", 6, C2, `
+  ${burst("var(--ember)", "oklch(0.58 0.17 40)", "50%", "70%")}${dots(0.12)}
+  <h1 class="hx xl sh abs z6" style="left:70px;top:84px">Smake-<br>lijk!</h1>
+  ${at("frietje", { mood: "happy", pose: "wave", size: 420 }, -20, 600, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 480 }, 190, 560, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 400 }, 510, 640, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 370 }, 710, 650, 5)}
+  ${tag("Haal af aan het Noordeinde", "left:70px;top:430px;transform:rotate(-3deg)", "sun")}`, { last: true }));
+
+const C3 = 7;
+const result = (n, letter, name, who, bg, fill, mood, pose, line) =>
+  slide(bg, n, C3, `
+  ${burst(fill[0], fill[1], "70%", "55%")}${dots(0.1)}
+  <h1 class="hx l abs z6 ${bg === "bg-paper" || bg === "bg-paper2" ? "shs" : "sh"}" style="left:70px;top:84px">Jij bent<br>${name}.</h1>
+  ${star(letter, { x: 790, y: 90, size: 230, rot: 8, fs: 120, fill: "var(--sun)" })}
+  ${tag(who, "left:70px;top:400px;transform:rotate(-3deg)", "ink")}
+  ${at(name.toLowerCase(), { mood, pose, size: 600, rot: 3 }, 430, 440, 3)}
+  ${bub(line, "left:70px;top:560px;transform:rotate(-2deg);font-size:50px;width:430px", { cls: "sun", tail: 300 })}`, { swipe: n < C3 - 1 });
+add("C3-1", "carousels", "C3-slide-1", "f-feed", slide("bg-night", 1, C3, `
+  ${burst("var(--night)", "var(--night-2)", "50%", "60%")}${dots(0.14)}
+  <h1 class="hx xl abs z6" style="left:70px;top:84px;color:var(--sun);text-shadow:8px 8px 0 var(--ember)">Welk type<br>ben jij?</h1>
+  ${tag("Doe de test, kies A, B, C of D", "left:70px;top:480px;transform:rotate(-3deg)", "sun")}
+  ${at("frietje", { mood: "wow", pose: "up", size: 360 }, -10, 690, 4)}
+  ${at("burg", { mood: "wow", pose: "cheer", size: 380 }, 240, 670, 5)}
+  ${at("snack", { mood: "wow", pose: "up", size: 340 }, 520, 720, 4)}
+  ${at("ijsje", { mood: "wow", pose: "cheer", size: 330 }, 740, 730, 5)}`, { swipe: false }));
+add("C3-2", "carousels", "C3-slide-2", "f-feed", slide("bg-paper", 2, C3, `
+  ${burst("var(--paper)", "var(--paper-2)", "50%", "50%")}${dots(0.1)}
+  <h1 class="hx m shs abs z6" style="left:70px;top:84px">Zaterdagavond.<br>Wat doe jij?</h1>
+  ${[["A", "Bank, film en niemand die iets vraagt.", "var(--sun)"], ["B", "Ik heb honger. Echt honger.", "var(--ember)"], ["C", "Spontaan. Ik zie wel.", "var(--paper)"], ["D", "Iets zoets erachteraan.", "var(--sun)"]]
+    .map(([l, t, c], i) => `<div class="hard abs z4" style="left:${70 + (i % 2) * 20}px;top:${340 + i * 190}px;width:900px;height:160px;padding:0 34px;display:flex;align-items:center;gap:30px;transform:rotate(${[-1.5, 1.2, -1, 1.5][i]}deg);background:${c};${c === "var(--ember)" ? "color:var(--paper)" : ""}"><span class="nr" style="flex:none;background:var(--paper);color:var(--ink)">${l}</span><span style="font-size:52px;font-weight:800;letter-spacing:-0.03em;line-height:1.02">${t}</span></div>`).join("")}`));
+add("C3-3", "carousels", "C3-slide-3", "f-feed", result(3, "A", "Frietje", "Antwoord A", "bg-sun", ["var(--sun)", "var(--amber)"], "happy", "wave", "Gezellig en altijd welkom."));
+add("C3-4", "carousels", "C3-slide-4", "f-feed", result(4, "B", "Burg", "Antwoord B", "bg-ember", ["var(--ember)", "oklch(0.58 0.17 40)"], "cool", "hips", "Eerlijk, stevig en zonder omwegen."));
+add("C3-5", "carousels", "C3-slide-5", "f-feed", result(5, "C", "Snack", "Antwoord C", "bg-night", ["var(--night)", "var(--night-2)"], "wink", "cheer", "Spontaan en altijd in voor meer."));
+add("C3-6", "carousels", "C3-slide-6", "f-feed", result(6, "D", "IJsje", "Antwoord D", "bg-paper2", ["var(--paper-2)", "var(--paper)"], "happy", "wave", "Zoet en relaxed. Altijd cool."));
+add("C3-7", "carousels", "C3-slide-7", "f-feed", slide("bg-sun", 7, C3, `
+  ${burst("var(--sun)", "var(--amber)", "50%", "70%")}${dots(0.1)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:84px">Welke letter<br>ben jij?</h1>
+  ${tag("Reageer met A, B, C of D", "left:70px;top:420px;transform:rotate(-3deg)", "ember")}
+  ${at("frietje", { mood: "happy", pose: "wave", size: 410 }, -30, 640, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 470 }, 170, 600, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 390 }, 480, 670, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 370 }, 700, 680, 5)}`, { last: true }));
 
 /* ============ STORIES 1080x1920 ============ */
-const story = (bg, inner, extra = "") => `<div class="post ${bg} f-story">${top("")}${extra}<div class="pad story">${inner}</div></div>`;
+const story = (bg, inner) => `<div class="post ${bg} f-story">${inner}<div class="abs z6" style="left:70px;top:96px;display:flex;align-items:center;gap:14px;font-size:38px;font-weight:800">${sunlogo.replace("sunlogo", "sunlogo\" style=\"width:60px;height:60px;color:var(--ember-bright)")}De Zon</div>${grain}</div>`;
+add("S01", "stories", "S01-onze-week", "f-story", story("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "50%", "45%")}${dots(0.1)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:230px">Onze week.</h1>
+  ${at("zon", { mood: "cool", pose: "cheer", size: 290 }, 790, 170, 3)}
+  <div class="hard abs z4" style="left:70px;top:520px;width:940px;padding:26px 40px;transform:rotate(-1.5deg)">
+    ${FACTS.uren.map(([d, t]) => `<div style="display:flex;justify-content:space-between;align-items:baseline;padding:16px 0;border-bottom:5px dotted color-mix(in oklch,var(--ink) 25%,transparent);font-size:62px;font-weight:800;letter-spacing:-0.03em;${t ? "" : "opacity:.6"}"><span>${d}</span><span style="font-variant-numeric:tabular-nums">${t || "De Zon slaapt"}</span></div>`).join("")}
+  </div>
+  ${tag("Noordeinde 12, Zwartewaal", "left:90px;top:1370px;transform:rotate(-3deg)", "ember")}
+  ${tag("Pinnen of contant", "left:560px;top:1460px;transform:rotate(3deg)", "")}`));
+add("S02", "stories", "S02-poll-frites-of-snack", "f-story", story("bg-sun", `
+  <div class="abs" style="inset:0;background:var(--ember);clip-path:polygon(54% 0,100% 0,100% 100%,46% 100%)"></div>${dots(0.12)}
+  <h1 class="hx l abs z6" style="left:70px;top:230px;color:var(--ink);text-shadow:7px 7px 0 var(--paper)">Frites<br>of snack?</h1>
+  ${at("frietje", { mood: "happy", pose: "cheer", size: 720 }, -90, 640, 3)}
+  ${at("snack", { mood: "cool", pose: "cheer", size: 640, flip: true }, 500, 700, 3)}
+  ${star("VS", { x: 390, y: 700, size: 300, rot: -8, fs: 120, fill: "var(--paper)" })}
+  ${tag("Stem hieronder", "left:340px;top:1370px;transform:rotate(-3deg)", "ink")}`));
+add("S03", "stories", "S03-vraag-jouw-standaard-bestelling", "f-story", story("bg-night", `
+  ${burst("var(--night)", "var(--night-2)", "50%", "50%")}${dots(0.14)}
+  <h1 class="hx m abs z6" style="left:70px;top:230px;color:var(--sun);text-shadow:7px 7px 0 var(--ember)">Wat is jouw<br>standaard<br>bestelling?</h1>
+  ${at("burg", { mood: "wow", pose: "point", size: 740, rot: -3 }, 10, 700, 3)}
+  ${at("frietje", { mood: "happy", pose: "wave", size: 520 }, 560, 800, 3)}
+  ${tag("Zet je antwoord hieronder", "left:200px;top:1400px;transform:rotate(-3deg)", "sun")}`));
+add("S04", "stories", "S04-afhalen-pin-of-contant", "f-story", story("bg-ember", `
+  ${burst("var(--ember)", "oklch(0.58 0.17 40)", "50%", "50%")}${dots(0.12)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:230px">Haal af.<br>Pin of<br>contant.</h1>
+  <div class="hard abs z4" style="left:70px;top:760px;width:600px;padding:26px 36px;transform:rotate(-2deg)">${["Bel en bestel", "Haal af aan het Noordeinde", "Pinnen of contant"].map((t) => `<div style="display:flex;align-items:center;gap:22px;padding:12px 0;font-size:46px;font-weight:800;letter-spacing:-0.03em;line-height:1.05"><span class="check" style="width:64px;height:64px">${checkIc}</span>${t}</div>`).join("")}</div>
+  ${at("snack", { mood: "cool", pose: "cheer", size: 520, rot: 4 }, 560, 760, 3)}
+  <div class="abs z6" style="left:70px;top:1400px">${bel("sun")}</div>`));
+add("S05", "stories", "S05-route-noordeinde-12", "f-story", story("bg-night", `
+  ${burst("var(--night)", "var(--night-2)", "50%", "50%")}${dots(0.14)}
+  <h1 class="hx l abs z6" style="left:70px;top:230px;color:var(--sun);text-shadow:7px 7px 0 var(--ember)">Zo kom je<br>bij De Zon.</h1>
+  <div class="hard abs z4" style="left:70px;top:640px;width:940px;height:340px;padding:34px 44px;transform:rotate(-2deg)"><div style="font-size:120px;font-weight:800;letter-spacing:-0.045em;line-height:.9">Noordeinde</div><div style="font-size:50px;font-weight:700;margin-top:22px">3238 BG Zwartewaal</div></div>
+  ${star("12", { x: 750, y: 540, size: 300, rot: 8, fs: 130, fill: "var(--sun)" })}
+  ${at("snack", { mood: "wink", pose: "point", size: 640 }, 40, 1000, 3)}
+  ${tag("Link-sticker met route", "left:520px;top:1340px;transform:rotate(3deg)", "sun")}`));
+add("S06", "stories", "S06-weekend-tot-23-uur", "f-story", story("bg-night", `
+  <div class="abs" style="inset:0;background:linear-gradient(180deg,var(--night) 0%,oklch(0.36 0.1 35) 60%,var(--ember) 100%)"></div>
+  <div class="abs" style="left:100px;top:1100px;width:880px;height:880px;border-radius:50%;background:var(--ember-bright);border:8px solid var(--ink)"></div>${dots(0.1)}
+  <h1 class="hx xl abs z6" style="left:70px;top:230px;color:var(--sun);text-shadow:8px 8px 0 var(--ink)">Het<br>weekend.</h1>
+  ${bub("Vrijdag en zaterdag<br>tot 23:00.", "left:70px;top:760px;transform:rotate(-3deg)", { cls: "sun", tail: 300, small: "Zondag tot 21:00." })}
+  ${at("zon", { mood: "cool", pose: "cheer", size: 460, rot: 6 }, 560, 520, 3)}
+  ${at("burg", { mood: "cool", pose: "cheer", size: 430 }, 60, 1000, 4)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 400 }, 620, 1040, 4)}
+  ${tag("Noordeinde 12, Zwartewaal", "left:300px;top:1470px;transform:rotate(-2deg)", "")}`));
+add("S07", "stories", "S07-ijsje", "f-story", story("bg-paper2", `
+  ${burst("var(--paper-2)", "var(--paper)", "50%", "55%")}${dots(0.1)}
+  <h1 class="hx xl shs abs z6" style="left:70px;top:230px">Een<br>ijsje?</h1>
+  ${at("ijsje", { mood: "wow", pose: "cheer", size: 900, rot: -4 }, 170, 640, 3)}
+  ${bub("Ja, dat hebben<br>we ook.", "left:70px;top:560px;transform:rotate(-3deg)", { cls: "sun", tail: 280 })}
+  ${tag("Vraag ernaar bij de balie", "left:90px;top:1450px;transform:rotate(-3deg)", "ember")}`));
+add("S08", "stories", "S08-lokaal-wie-neem-jij-mee", "f-story", story("bg-ember", `
+  ${burst("var(--ember)", "oklch(0.58 0.17 40)", "50%", "55%")}${dots(0.12)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:230px">Wie neem jij<br>mee naar<br>De Zon?</h1>
+  ${at("frietje", { mood: "happy", pose: "wave", size: 600 }, -90, 780, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 700 }, 120, 720, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 580 }, 480, 800, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 520 }, 700, 840, 5)}
+  ${tag("Tag je maat", "left:330px;top:1400px;transform:rotate(-4deg)", "sun")}`));
+add("S09", "stories", "S09-quiz-welk-type", "f-story", story("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "50%", "55%")}${dots(0.1)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:230px">Welk type<br>ben jij?</h1>
+  ${[["A", "frietje", "Frietje", 70, 650], ["B", "burg", "Burg", 560, 650], ["C", "snack", "Snack", 70, 1060], ["D", "ijsje", "IJsje", 560, 1060]].map(([l, n, t, x, y]) => `<div class="hard abs z3" style="left:${x}px;top:${y}px;width:450px;height:380px;overflow:hidden"><span class="nr abs z6" style="left:22px;top:20px">${l}</span>${at(n, { mood: "happy", pose: "wave", size: 300 }, 80, 70, 2)}</div>`).join("")}
+  ${tag("Doe mee met de quiz", "left:300px;top:1500px;transform:rotate(-3deg)", "ember")}`));
+add("S10", "stories", "S10-de-zon-gaat-op", "f-story", story("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "50%", "50%")}${dots(0.1)}
+  <h1 class="hx xl sh abs z6" style="left:70px;top:230px">De Zon<br>gaat op.</h1>
+  <svg class="abs arc z2" viewBox="0 0 960 560" style="left:60px;top:700px;width:960px;height:560px;color:var(--ink)"><path d="M30 550A450 450 0 0 1 930 550"/></svg>
+  ${at("zon", { mood: "cool", pose: "cheer", size: 700 }, 190, 480, 3)}
+  <div class="abs z4" style="left:0;right:0;top:1250px;height:130px;background:var(--ink)"></div>
+  ${tag("Dinsdag t/m zondag vanaf 12:30", "left:150px;top:1380px;transform:rotate(-2deg)", "ember")}
+  ${tag("Noordeinde 12, Zwartewaal", "left:230px;top:1490px;transform:rotate(2deg)", "")}`));
 
-add("S01", "stories", "S01-onze-week", "f-story", story("bg-paper", `<h1 class="h1 s">Onze week.</h1><table class="week" style="margin-top:56px">${FACTS.uren.map(([d, t]) => `<tr class="${t ? "" : "dim"}"><td>${d}</td><td>${t || "Gesloten"}</td></tr>`).join("")}</table>`));
-add("S02", "stories", "S02-poll-frites-of-snack", "f-story", story("bg-sun", `<h1 class="h1 m">Frites<br>of snack?</h1>`, `${abs(ill("frites"), "left:-60px;top:900px;width:560px;height:560px;transform:rotate(-8deg)")}${abs(ill("snack"), "right:-40px;top:900px;width:540px;height:540px;transform:rotate(8deg)")}`));
-add("S03", "stories", "S03-vraag-jouw-standaard-bestelling", "f-story", story("bg-night", `<h1 class="h1 m">Wat is jouw standaard bestelling?</h1><p class="lead accent" style="margin-top:40px">Typ het hieronder.</p>`, `${abs(ill("hamburger"), "right:-80px;top:1000px;width:560px;height:560px;transform:rotate(-8deg)")}`));
-add("S04", "stories", "S04-afhalen-pin-of-contant", "f-story", story("bg-ember", `<h1 class="h1 m">Haal af.<br>Pin of contant.</h1><p class="lead" style="margin-top:40px">Noordeinde 12, Zwartewaal.</p>`, `${abs(`<svg class="icon" style="width:420px;height:420px;color:var(--sun)"><use href="#i-shopping-bag"/></svg>`, "right:80px;top:1040px;transform:rotate(8deg)")}`));
-add("S05", "stories", "S05-route-noordeinde-12", "f-story", story("bg-night", `<h1 class="h1 m">Zo kom je bij De Zon.</h1><div style="margin-top:60px;background:var(--paper);color:var(--ink);border:8px solid var(--ink);outline:6px solid var(--paper);border-radius:28px;padding:40px 48px"><div style="font-size:98px;font-weight:800;letter-spacing:-0.04em;line-height:.95">Noordeinde 12</div><div style="margin-top:12px;font-size:50px;font-weight:700">3238 BG Zwartewaal</div></div><p style="margin-top:56px"><span class="chip sun">Dinsdag t/m zondag open</span></p>`));
-add("S06", "stories", "S06-weekend-tot-23-uur", "f-story", story("bg-sun", `<h1 class="h1 m">Het weekend.</h1><p class="lead" style="margin-top:36px;max-width:10em">Vrijdag en zaterdag open tot 23:00 uur.</p>`, `<svg class="abs" viewBox="0 0 1080 700" style="left:0;top:1100px;width:1080px;height:700px">${rays(540, 700, 330, 420, 10, 170, 20)}<circle cx="540" cy="700" r="290" fill="var(--ember-bright)" stroke="var(--ink)" stroke-width="7"/></svg>`));
-add("S07", "stories", "S07-ijsje", "f-story", story("bg-paper2", `<h1 class="h1 m">Een<br>ijsje?</h1><p class="lead" style="margin-top:36px">Ja, dat hebben we ook.</p>`, `${abs(ill("ijs"), "right:20px;top:960px;width:640px;height:640px;transform:rotate(-8deg)")}`));
-add("S08", "stories", "S08-lokaal-wie-neem-jij-mee", "f-story", story("bg-ember", `<h1 class="h1 m">Wie neem jij mee naar De Zon?</h1><p class="lead" style="margin-top:40px">Tag een Zwartewaler.</p>`, `${abs(`<svg class="icon" style="width:380px;height:380px;color:var(--sun)"><use href="#i-users"/></svg>`, "right:90px;top:1050px;transform:rotate(-6deg)")}`));
-
-/* ============ REEL-COVERS 1080x1920 (tekst binnen de middelste 1080x1350) ============ */
-const cover = (bg, inner) => `<div class="post ${bg} f-story"><div class="pad" style="padding:420px 84px 0">${inner}</div></div>`;
-add("R01", "reels/covers", "R01-frites-in-beeld", "f-story", cover("bg-sun", `<h1 class="h1 m">Frites in beeld.</h1>${abs(ill("frites"), "right:-50px;top:900px;width:700px;height:700px;transform:rotate(7deg)")}`));
-add("R02", "reels/covers", "R02-snack-tijd", "f-story", cover("bg-night", `<h1 class="h1 m">Snack-<br>tijd.</h1>${abs(ill("snack"), "right:-20px;top:900px;width:680px;height:680px;transform:rotate(8deg)")}`));
-add("R03", "reels/covers", "R03-pov-afhalen", "f-story", cover("bg-ember", `<h1 class="h1 m">POV: je haalt af.</h1>${abs(`<svg class="icon" style="width:400px;height:400px;color:var(--sun)"><use href="#i-shopping-bag"/></svg>`, "right:90px;top:1000px;transform:rotate(8deg)")}`));
-add("R04", "reels/covers", "R04-kijkje-in-de-zon", "f-story", cover("bg-paper", `<h1 class="h1 m">Kijkje bij De Zon.</h1>${abs(ill("zon"), "right:20px;top:950px;width:560px;height:560px;color:var(--ember-bright)")}`));
-add("R05", "reels/covers", "R05-alleen-bij-de-cafetaria", "f-story", cover("bg-paper2", `<h1 class="h1 s">Dingen die je alleen bij de cafetaria hoort.</h1>${abs(ill("hamburger"), "right:-20px;top:1000px;width:620px;height:620px;transform:rotate(-6deg)")}`));
+/* ============ REEL-COVERS 1080x1920 ============ */
+const cover = (bg, inner) => story(bg, inner);
+add("R01", "reels/covers", "R01-frites-in-beeld", "f-story", cover("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "50%", "60%")}${dots(0.1)}
+  <h1 class="hx xl sh abs z6" style="left:70px;top:300px">Frites<br>in beeld.</h1>
+  ${at("frietje", { mood: "wow", pose: "up", size: 1120 }, -20, 600, 3)}`));
+add("R02", "reels/covers", "R02-snack-tijd", "f-story", cover("bg-night", `
+  ${burst("var(--night)", "var(--night-2)", "50%", "60%")}${dots(0.14)}
+  <h1 class="hx xl abs z6" style="left:70px;top:300px;color:var(--sun);text-shadow:8px 8px 0 var(--ember)">Snack-<br>tijd.</h1>
+  ${at("snack", { mood: "happy", pose: "cheer", size: 1080, rot: 4 }, 0, 640, 3)}`));
+add("R03", "reels/covers", "R03-pov-afhalen", "f-story", cover("bg-ember", `
+  ${burst("var(--ember)", "oklch(0.58 0.17 40)", "50%", "60%")}${dots(0.12)}
+  <h1 class="hx l sh abs z6" style="left:70px;top:300px">POV: je<br>haalt af.</h1>
+  ${at("burg", { mood: "cool", pose: "point", size: 1020 }, -30, 620, 3)}
+  ${tag("Noordeinde 12", "left:600px;top:1300px;transform:rotate(4deg)", "sun")}`));
+add("R04", "reels/covers", "R04-kijkje-in-de-zon", "f-story", cover("bg-paper", `
+  ${burst("var(--paper)", "var(--paper-2)", "50%", "60%")}${dots(0.1)}
+  <h1 class="hx l shs abs z6" style="left:70px;top:300px">Kijkje<br>bij De Zon.</h1>
+  ${at("zon", { mood: "wink", pose: "cheer", size: 1020 }, 20, 620, 3)}`));
+add("R05", "reels/covers", "R05-alleen-bij-de-cafetaria", "f-story", cover("bg-paper2", `
+  ${burst("var(--paper-2)", "var(--paper)", "50%", "60%")}${dots(0.1)}
+  <h1 class="hx m shs abs z6" style="left:70px;top:290px">Dingen die je<br>alleen bij de<br>cafetaria hoort.</h1>
+  ${at("frietje", { mood: "happy", pose: "wave", size: 560 }, -80, 860, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 660 }, 130, 800, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 540 }, 480, 880, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 490 }, 700, 910, 5)}`));
 
 /* ============ PROFIEL EN HIGHLIGHTS ============ */
-add("P01", "assets/profiel", "profielfoto-1080", "f-square", `<div class="post bg-sun f-square"><svg class="abs" viewBox="0 0 1080 1080" style="inset:0;width:100%;height:100%"><g transform="translate(540 540)">${rays(0, 0, 260, 380, 0, 337.5, 22.5, 22).replaceAll("var(--ink)", "var(--ink)")}<circle r="190" fill="var(--ember-bright)" stroke="var(--ink)" stroke-width="22"/></g></svg></div>`);
-add("P02", "assets/profiel", "facebook-omslag-1640x624", "f-cover", `<div class="post bg-sun f-cover"><svg class="abs arc" viewBox="0 0 700 360" style="right:60px;top:200px;width:700px;height:360px;color:var(--ink)"><path d="M30 340A320 320 0 0 1 670 340"/></svg><svg class="abs" viewBox="0 0 700 360" style="right:60px;top:200px;width:700px;height:360px">${rays(350, 340, 120, 175, 10, 170, 20, 9)}<circle cx="350" cy="340" r="100" fill="var(--ember-bright)" stroke="var(--ink)" stroke-width="9"/></svg><div class="abs" style="left:90px;top:130px;color:var(--ink)"><div style="font-size:150px;font-weight:800;letter-spacing:-0.045em;line-height:.9">Cafetaria<br>De Zon</div><div style="margin-top:28px;font-size:42px;font-weight:700;line-height:1.2">Noordeinde 12, Zwartewaal<br>${FACTS.tel}</div></div></div>`);
-const hl = (id, name, inner) => add(id, "assets/profiel", `highlight-${name}`, "f-story", `<div class="post bg-sun f-story"><div class="abs" style="left:240px;top:660px;width:600px;height:600px;border-radius:50%;background:var(--paper);border:10px solid var(--ink);display:grid;place-items:center">${inner}</div></div>`);
-hl("H01", "kaart", `<div style="width:360px;height:360px">${ill("frites")}</div>`);
-hl("H02", "tijden", `<svg class="icon" style="width:340px;height:340px;color:var(--ink)"><use href="#i-clock"/></svg>`);
-hl("H03", "route", `<svg class="icon" style="width:340px;height:340px;color:var(--ember)"><use href="#i-navigation"/></svg>`);
-hl("H04", "afhalen", `<svg class="icon" style="width:340px;height:340px;color:var(--ember)"><use href="#i-shopping-bag"/></svg>`);
+add("P01", "assets/profiel", "profielfoto-1080", "f-square", `<div class="post bg-sun f-square">${burst("var(--sun)", "var(--amber)", "50%", "50%")}${at("zon", { mood: "cool", pose: "none", size: 820 }, 130, 50, 3)}</div>`);
+add("P02", "assets/profiel", "facebook-omslag-1640x624", "f-cover", `<div class="post bg-sun f-cover">${burst("var(--sun)", "var(--amber)", "35%", "50%")}${dots(0.1)}
+  <h1 class="hx m sh abs z6" style="left:80px;top:70px;font-size:104px">Cafetaria<br>De Zon.</h1>
+  ${tag("Noordeinde 12, Zwartewaal", "left:90px;top:360px;transform:rotate(-2deg)", "ember")}
+  ${tag("Bel 0181 66 36 69 · pinnen of contant", "left:90px;top:460px;transform:rotate(1.5deg);font-size:36px", "")}
+  ${at("frietje", { mood: "happy", pose: "wave", size: 330 }, 700, 270, 4)}
+  ${at("burg", { mood: "cool", pose: "hips", size: 390 }, 880, 230, 5)}
+  ${at("snack", { mood: "wink", pose: "cheer", size: 320 }, 1130, 290, 4)}
+  ${at("ijsje", { mood: "happy", pose: "wave", size: 300 }, 1330, 310, 5)}
+  ${at("zon", { mood: "cool", pose: "cheer", size: 300 }, 1330, -40, 3)}</div>`);
+const hl = (id, name, inner) => add(id, "assets/profiel", `highlight-${name}`, "f-story", `<div class="post bg-sun f-story">${burst("var(--sun)", "var(--amber)", "50%", "50%")}<div class="abs z2" style="left:190px;top:640px;width:700px;height:700px;border-radius:50%;background:var(--paper);border:10px solid var(--ink);box-shadow:16px 16px 0 var(--ink)"></div>${inner}</div>`);
+hl("H01", "kaart", `${at("frietje", { mood: "happy", pose: "wave", size: 470 }, 300, 700, 4)}`);
+hl("H02", "tijden", `${at("zon", { mood: "cool", pose: "cheer", size: 520 }, 280, 700, 4)}`);
+hl("H03", "route", `${at("snack", { mood: "wink", pose: "point", size: 480 }, 300, 690, 4)}`);
+hl("H04", "afhalen", `${at("burg", { mood: "cool", pose: "hips", size: 500 }, 290, 690, 4)}`);
 
 /* ============ SJABLONEN (bewerkbaar) ============ */
-add("T01", "templates/sjablonen", "sjabloon-actie-feed", "f-feed", `
-<div class="post bg-ember f-feed">
-  <div class="sticker sun" style="right:84px;top:90px">ACTIE</div>
-  <div class="pad" style="padding-top:260px"><h1 class="h1 m">[Wat is de actie?]</h1><p class="lead" style="margin-top:36px;max-width:12em">[Geldig van … tot …. Alleen invullen als de eigenaar het bevestigt.]</p></div>
-  ${abs(bel("sun"), "left:84px;bottom:160px")}
-  ${foot("sunfoot")}
-</div>`, { template: true });
-add("T02", "templates/sjablonen", "sjabloon-foto-feed", "f-feed", `
-<div class="post bg-paper f-feed">
-  <div class="abs photo" style="left:84px;right:84px;top:84px;height:820px"><div class="slot" style="width:100%;height:100%;border:0;border-radius:0">Foto hier (assets/foto/…)</div></div>
-  <div class="pad" style="padding-top:960px"><h1 class="h1 xs">[Titel]</h1><p class="lead" style="margin-top:18px;font-size:42px">[Eén zin.]</p></div>
-  ${foot()}
-</div>`, { template: true });
-add("T03", "templates/sjablonen", "sjabloon-vraag-story", "f-story", story("bg-sun", `<h1 class="h1 m">[Vraag aan je volgers?]</h1><p class="lead" style="margin-top:40px">Plaats hieronder de vraag- of pollsticker.</p>`), { template: true });
-
-export default pieces;
+add("T01", "templates/sjablonen", "sjabloon-actie-feed", "f-feed", post("bg-ember", `
+  ${burst("var(--ember)", "oklch(0.58 0.17 40)", "50%", "60%")}${dots(0.12)}
+  ${star("ACTIE", { x: 770, y: 80, size: 260, rot: 10, fs: 54, fill: "var(--sun)" })}
+  <h1 class="hx m sh abs z6" style="left:70px;top:260px;max-width:700px">[Wat is de actie?]</h1>
+  <p class="abs z6 lead" style="left:70px;top:640px;max-width:11em;font-size:50px">[Geldig van … tot …. Alleen invullen als de eigenaar het bevestigt.]</p>
+  ${at("frietje", { mood: "wow", pose: "up", size: 430 }, 600, 640, 4)}
+  ${infobar()}`), { template: true });
+add("T02", "templates/sjablonen", "sjabloon-foto-feed", "f-feed", post("bg-paper", `
+  ${burst("var(--paper)", "var(--paper-2)", "50%", "50%")}${dots(0.1)}
+  <div class="hard abs z3" style="left:80px;top:70px;width:920px;height:760px;padding:24px;transform:rotate(-1.5deg)"><div class="slot" style="width:100%;height:100%;border-radius:20px">Foto hier (assets/foto/…)</div></div>
+  <h1 class="hx s shs abs z6" style="left:80px;top:880px">[Titel]</h1>
+  <p class="abs z6 lead" style="left:80px;top:990px;font-size:42px">[Eén zin.]</p>
+  ${at("zon", { mood: "wink", pose: "cheer", size: 280 }, 760, 700, 5)}
+  ${infobar()}`), { template: true });
+add("T03", "templates/sjablonen", "sjabloon-vraag-story", "f-story", story("bg-sun", `
+  ${burst("var(--sun)", "var(--amber)", "50%", "55%")}${dots(0.1)}
+  <h1 class="hx m sh abs z6" style="left:70px;top:300px">[Vraag aan je volgers?]</h1>
+  ${at("zon", { mood: "wow", pose: "up", size: 600 }, 240, 900, 3)}
+  ${tag("Plaats hier de vraag- of poll-sticker", "left:120px;top:1500px;transform:rotate(-2deg)", "ink")}`), { template: true });

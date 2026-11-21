@@ -17,6 +17,7 @@ body.doc { height: auto; overflow: auto; background: var(--paper); color: var(--
 .doc .c4 { grid-template-columns: repeat(4, 1fr); }
 .doc .c5 { grid-template-columns: repeat(5, 1fr); }
 .doc .c7 { grid-template-columns: repeat(7, 1fr); }
+.doc .c8 { grid-template-columns: repeat(8, 1fr); }
 .doc .c6 { grid-template-columns: repeat(6, 1fr); }
 .doc figure { margin: 0; }
 .doc figure img, .doc figure video { width: 100%; display: block; border-radius: 12px; border: 2px solid var(--ink); background: var(--paper-2); }
@@ -48,7 +49,7 @@ body.doc { height: auto; overflow: auto; background: var(--paper); color: var(--
 .doc .dark td, .doc .dark th { border-color: oklch(0.4 0.015 60); }
 
 @media (max-width: 900px) {
-  .doc .c4, .doc .c5, .doc .c6, .doc .c7 { grid-template-columns: repeat(2, 1fr); }
+  .doc .c4, .doc .c5, .doc .c6, .doc .c7, .doc .c8 { grid-template-columns: repeat(2, 1fr); }
   .doc .c3 { grid-template-columns: 1fr; }
 }
 @media print {
@@ -59,3 +60,7 @@ body.doc { height: auto; overflow: auto; background: var(--paper); color: var(--
   .doc .stillonly { display: block; }
   .doc .cover { padding: 48px 0; }
 }
+.doc .illset svg.ch { position: relative !important; width: 130px !important; height: 140px !important; margin: 0 auto 6px; }
+
+.doc .castrow { display: flex; flex-wrap: wrap; align-items: flex-end; margin-top: 36px; gap: 0; }
+.doc .castrow svg.ch { position: relative !important; margin-inline: -18px; }
