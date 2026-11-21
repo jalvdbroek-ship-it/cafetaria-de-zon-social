@@ -1,6 +1,6 @@
 # Social media pakket: Cafetaria De Zon
 
-Concept ter beoordeling, niets is gepubliceerd. Open `index.html` voor de presentatie.
+Concept ter beoordeling, niets is op Instagram of Facebook geplaatst. Open `index.html` voor de presentatie.
 
 ## Mappen
 
